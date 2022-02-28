@@ -1,4 +1,5 @@
-CFILES = ./mandatory/push_swap.c
+CFILES = ./mandatory/push_swap.c  ./mandatory/sa_pa_ra_rra.c  ./mandatory/sb_pb_rb_rrb.c  \
+		./mandatory/ss_rr_rrr.c
 
 OFILES = ${CFILES:.c=.o}
 
