@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:24 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/01 12:12:18 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/01 15:13:02 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
+
+//**********struct_node***************
 
 typedef struct node
 {
@@ -25,6 +28,8 @@ typedef struct node
 	struct node	*prev;
 }	t_node;
 
+//**********Stack_A_info***************
+
 typedef struct info1
 {
 	int		len;
@@ -32,12 +37,16 @@ typedef struct info1
 	t_node	*tail;
 }	t_inf_sa;
 
+//**********Stack_B_info***************
+
 typedef struct info2
 {
 	int		len;
 	t_node	*head;
 	t_node	*tail;
 }	t_inf_sb;
+
+//**********Project_Data***************
 
 typedef struct data
 {
@@ -49,13 +58,21 @@ typedef struct data
 	t_node	*tmp3;
 }	t_data;
 
-void	len_stack(int *len, t_node *stack);
-void	sa(t_node **s_a, t_inf_sa *info);
-void	sb(t_node **s_b, t_inf_sb *info);
+//**********Function_prototype**********
+
+void	len_stack_a(t_inf_sa *infa);
+void	len_stack_b(t_inf_sb *infb);
+void	sa(t_inf_sa *infa);
+void	sb(t_inf_sb *infb);
 void	pa(t_inf_sa *infa, t_inf_sb *infb);
-void	ss(t_node **s_a, t_inf_sa *info1, t_node **s_b, t_inf_sb *info2);
-void	ra(t_inf_sa *info);
-void	rb(t_inf_sb *info);
-void	rr(t_inf_sa *inf_a, t_inf_sb *inf_b);
+void	pb(t_inf_sa *infa, t_inf_sb *infb);
+void	ss(t_inf_sa *infa, t_inf_sb *infb);
+void	ra(t_inf_sa *infa);
+void	rb(t_inf_sb *infb);
+void	rra(t_inf_sa *infa);
+void	rrb(t_inf_sb *infb);
+void	rr(t_inf_sa *infa, t_inf_sb *infb);
+void	rrr(t_inf_sa *infa, t_inf_sb *infb);
+void	check_dup(t_inf_sa *infa);
 
 #endif

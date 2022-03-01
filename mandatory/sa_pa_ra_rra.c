@@ -6,39 +6,60 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:43:22 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/01 12:10:30 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:24:24 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	len_stack(int *len, t_node *stack)
-{
-	while (stack != NULL)
-	{
-		stack = stack->next;
-		(*len)++;
-	}
-}
+/* ************************************************************************** */
 
-void	sa(t_node **s_a, t_inf_sa *info)
+void	len_stack_a(t_inf_sa *infa)
 {
 	t_data	data;
 
-	info->len = 0;
-	len_stack(&info->len, *s_a);
-	if (info->len != 1)
+	infa->len = 0;
+	data.tmp = infa->head;
+	while (data.tmp != NULL)
 	{
-		data.tmp = info->head;
+		data.tmp = data.tmp->next;
+		infa->len++;
+	}
+}
+
+void	len_stack_b(t_inf_sb *infb)
+{
+	t_data	data;
+
+	infb->len = 0;
+	data.tmp = infb->head;
+	while (data.tmp != NULL)
+	{
+		data.tmp = data.tmp->next;
+		infb->len++;
+	}
+}
+
+/* ************************************************************************** */
+
+void	sa(t_inf_sa *infa)
+{
+	t_data	data;
+
+	if (infa->len > 1)
+	{
+		data.tmp = infa->head;
 		data.tmp2 = data.tmp->next;
 		data.tmp3 = data.tmp2->next;
 		data.tmp2->next = data.tmp;
 		data.tmp->prev = data.tmp2;
 		data.tmp->next = data.tmp3;
 		data.tmp3->prev = data.tmp;
-		info->head = data.tmp2;
+		infa->head = data.tmp2;
 	}
 }
+
+/* ************************************************************************** */
 
 void	pa(t_inf_sa *infa, t_inf_sb *infb)
 {
@@ -53,17 +74,42 @@ void	pa(t_inf_sa *infa, t_inf_sb *infb)
 		data.tmp2->prev = data.tmp;
 		infa->head = data.tmp;
 	}
+	infa->len++;
+	infb->len--;
 }
 
-void	ra(t_inf_sa *info)
+/* ************************************************************************** */
+
+void	rra(t_inf_sa *infa)
 {
 	t_data	data;
 
-	data.tmp = info->head;
-	data.tmp2 = info->tail;
-	info->tail = info->tail->prev;
-	data.tmp2->next = data.tmp;
-	data.tmp->prev = data.tmp2;
-	info->head = data.tmp2;
-	info->tail->next = NULL;
+	if (infa->len > 1)
+	{
+		data.tmp = infa->head;
+		data.tmp2 = infa->tail;
+		infa->tail = infa->tail->prev;
+		data.tmp2->next = data.tmp;
+		data.tmp->prev = data.tmp2;
+		infa->head = data.tmp2;
+		infa->tail->next = NULL;
+	}
+}
+
+/* ************************************************************************** */
+
+void	ra(t_inf_sa *infa)
+{
+	t_data	data;
+
+	if (infa->len > 1)
+	{
+		data.tmp = infa->head;
+		infa->head = infa->head->next;
+		data.tmp2 = infa->tail;
+		data.tmp->prev = data.tmp2;
+		data.tmp2->next = data.tmp;
+		data.tmp->next = NULL;
+		infa->tail = data.tmp;
+	}
 }

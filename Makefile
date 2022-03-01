@@ -47,7 +47,8 @@ all : ${NAME}
 
 ${NAME} : print_header_m ${OFILES}
 	@make -C ./libft
-	@$(CC) $(OFILES) $(W) ./libft/libft.a -o $(NAME)
+	@make -C ./ft_printf
+	@$(CC) $(OFILES) $(W) ./libft/libft.a ./ft_printf/libftprintf.a -o $(NAME)
 	@echo "${YELLOW}$(NAME) created ${NC}"
 
 print_header_m:
@@ -68,6 +69,7 @@ clean:
 	@rm -f ./mandatory/*.o
 	@rm -f ./bonus/*.o
 	@make fclean -C ./libft
+	@make fclean -C ./ft_printf
 
 fclean : clean
 	@rm -f ${NAME}
