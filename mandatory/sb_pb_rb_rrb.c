@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:43:33 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/01 17:23:10 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:58:37 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	sb(t_inf_sb *infb)
 {
 	t_data	data;
 
-	len_stack_b(infb);
 	if (infb->len > 2)
 	{
 		data.tmp = infb->head;
@@ -47,7 +46,7 @@ void	pb(t_inf_sa *infa, t_inf_sb *infb)
 {
 	t_data	data;
 
-	if (infb->len == -1)
+	if (infb->len == 0 && infa->len >= 1)
 	{
 		data.tmp = infa->head;
 		infb->head = infa->head;
@@ -55,9 +54,10 @@ void	pb(t_inf_sa *infa, t_inf_sb *infb)
 		infb->head->data = data.tmp->data;
 		infb->head->next = NULL;
 		infb->tail = infb->head;
-		infb->len = 0;
+		infb->len++;
+		infa->len--;
 	}
-	else if (infa != NULL)
+	else if (infa->len >= 1)
 	{
 		data.tmp = infa->head;
 		data.tmp2 = infb->head;
@@ -65,9 +65,9 @@ void	pb(t_inf_sa *infa, t_inf_sb *infb)
 		data.tmp->next = data.tmp2;
 		data.tmp2->prev = data.tmp;
 		infb->head = data.tmp;
+		infb->len++;
+		infa->len--;
 	}
-	infb->len++;
-	infb->len--;
 }
 
 /* ************************************************************************** */
