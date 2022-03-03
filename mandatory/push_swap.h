@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:24 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/02 11:00:17 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/03 16:04:30 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,16 @@ typedef struct data
 {
 	int		i;
 	int		j;
+	int		upper;
+	int		lower;
+	int		pivot;
+	int		start;
+	int		end;
 	t_node	*newnode;
 	t_node	*tmp;
 	t_node	*tmp2;
 	t_node	*tmp3;
+	t_node	*tmp4;
 }	t_data;
 
 //**********Function_prototype**********
@@ -75,5 +81,7 @@ void	rr(t_inf_sa *infa, t_inf_sb *infb);
 void	rrr(t_inf_sa *infa, t_inf_sb *infb);
 void	display_a(t_inf_sa infa);
 void	display_b(t_inf_sb infb);
+void	partition(t_inf_sa *infa, t_inf_sb *infb, t_data *data);
+void	quick_sort_(t_inf_sa *infa, t_inf_sb *infb);
 
 #endif

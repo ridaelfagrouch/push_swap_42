@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:14 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/02 14:00:53 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/03 19:57:08 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 static void	check_isdigit(t_data *data, char **av)
 {
-	while (av[data->i][data->j])
+	while (av[data->j][data->i])
 	{
-		if (av[data->i][data->j] == '-')
-			data->j++;
-		if (ft_isdigit(av[data->i][data->j]) && av[data->i][data->j] != '\0')
-			data->j++;
-		if (ft_isdigit(av[data->i][data->j]) == 0 && \
-			av[data->i][data->j] != '\0')
+		if (av[data->j][data->i] == '-')
+			data->i++;
+		if (ft_isdigit(av[data->j][data->i]) && av[data->j][data->i] != '\0')
+			data->i++;
+		if (ft_isdigit(av[data->j][data->i]) == 0 && \
+			av[data->j][data->i] != '\0')
 		{
 			write(2, "error!\n", 7);
 			exit(1);
@@ -37,23 +37,22 @@ static void	data_sa(t_node **s_a, int ac, char **av, t_inf_sa *infa)
 {
 	t_data	data;
 
-	data.i = ac - 2;
-	data.j = 0;
+	data.j = 2;
+	data.i = 0;
 	infa->head = *s_a;
 	infa->tail = *s_a;
-	while (data.i > 0)
+	while (data.j < ac)
 	{
 		data.newnode = (t_node *)malloc(sizeof(t_node));
 		if (!data.newnode)
 			exit(1);
 		check_isdigit(&data, av);
-		data.j = 0;
-		data.newnode->data = ft_atoi(av[data.i]);
+		data.newnode->data = ft_atoi(av[data.j]);
 		data.newnode->next = NULL;
 		infa->tail->next = data.newnode;
 		data.newnode->prev = infa->tail;
 		infa->tail = data.newnode;
-		data.i--;
+		data.j++;
 	}
 }
 
@@ -298,17 +297,17 @@ int	main(int ac, char *av[])
 		s_b = (t_node *)malloc(sizeof(t_node));
 		if (!s_b)
 			exit(1);
-		if (av[ac - 1][j] == '-')
+		if (av[1][j] == '-')
 			j++;
-		while (ft_isdigit(av[ac - 1][j]) && av[ac - 1][j] != '\0')
+		while (ft_isdigit(av[1][j]) && av[1][j] != '\0')
 			j++;
-		if (ft_isdigit(av[ac - 1][j]) == 0 && av[ac - 1][j] != '\0')
+		if (ft_isdigit(av[1][j]) == 0 && av[1][j] != '\0')
 		{
 			write(1, "error!\n", 7);
 			exit(1);
 		}
 		initial_data(&infa, &infb, &s_a, &s_b);
-		infa.head->data = ft_atoi(av[ac - 1]);
+		infa.head->data = ft_atoi(av[1]);
 		data_sa(&s_a, ac, av, &infa);
 		len_stack_a(&infa);
 		check_dup(&infa);
