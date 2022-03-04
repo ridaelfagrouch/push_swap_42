@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 10:53:34 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/02 10:57:17 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/04 19:06:59 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	display_a(t_inf_sa infa)
 {
 	while (infa.head != NULL)
 	{
-		ft_printf("%d\n", infa.head->data);
+		ft_printf("index = %d | data = %d | sub_s = %d\n", infa.head->index, infa.head->data, infa.head->sub_s);
 		infa.head = infa.head->next;
 	}
 }

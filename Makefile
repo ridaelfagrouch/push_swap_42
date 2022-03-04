@@ -1,5 +1,5 @@
 CFILES = ./mandatory/push_swap.c  ./mandatory/sa_pa_ra_rra.c  ./mandatory/sb_pb_rb_rrb.c  \
-		./mandatory/ss_rr_rrr.c  ./mandatory/stack_len_disp.c  ./mandatory/quick_sort.c
+		./mandatory/ss_rr_rrr.c  ./mandatory/stack_len_disp.c  ./mandatory/sorting.c
 
 OFILES = ${CFILES:.c=.o}
 
@@ -37,7 +37,7 @@ define HEADER_M
 |*  | .__/ \__,_|___/_| |_|___|___/ \_/\_/ \__,_| .__/   *|
 |*  |_|                  |_____|                |_|      *|
 |*_______________________________________________________*|
-⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻
+ ⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻
 endef
 export HEADER_M
 

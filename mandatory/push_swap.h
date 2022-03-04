@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:24 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/03 16:04:30 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/04 18:19:03 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ typedef struct node
 	int			data;
 	struct node	*next;
 	struct node	*prev;
+	int			index;
+	int			lenght;
+	int			sub_s;
 }	t_node;
 
 //**********Stack_A_info***************
@@ -33,6 +36,8 @@ typedef struct node
 typedef struct info1
 {
 	int		len;
+	int		small;
+	int		small_index;
 	t_node	*head;
 	t_node	*tail;
 }	t_inf_sa;
@@ -42,6 +47,7 @@ typedef struct info1
 typedef struct info2
 {
 	int		len;
+	int		index;
 	t_node	*head;
 	t_node	*tail;
 }	t_inf_sb;
@@ -52,10 +58,6 @@ typedef struct data
 {
 	int		i;
 	int		j;
-	int		upper;
-	int		lower;
-	int		pivot;
-	int		start;
 	int		end;
 	t_node	*newnode;
 	t_node	*tmp;
@@ -81,7 +83,6 @@ void	rr(t_inf_sa *infa, t_inf_sb *infb);
 void	rrr(t_inf_sa *infa, t_inf_sb *infb);
 void	display_a(t_inf_sa infa);
 void	display_b(t_inf_sb infb);
-void	partition(t_inf_sa *infa, t_inf_sb *infb, t_data *data);
-void	quick_sort_(t_inf_sa *infa, t_inf_sb *infb);
+void	sort(t_inf_sa *infa, t_inf_sb *infb);
 
 #endif
