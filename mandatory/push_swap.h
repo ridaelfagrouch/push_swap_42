@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:24 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/04 18:19:03 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/05 17:51:14 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,9 @@ void	rrr(t_inf_sa *infa, t_inf_sb *infb);
 void	display_a(t_inf_sa infa);
 void	display_b(t_inf_sb infb);
 void	sort(t_inf_sa *infa, t_inf_sb *infb);
+void	long_i_s_index(t_inf_sa *infa, t_inf_sb *infb);
+void	long_i_s(t_inf_sa *infa, t_inf_sb *infb);
+void	start_sorting(t_inf_sa *infa, t_inf_sb *infb, int *tab);
+// void	found_sub_s(t_data *data, int nember_befor, int index_befor);
 
 #endif

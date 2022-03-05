@@ -1,5 +1,5 @@
 CFILES = ./mandatory/push_swap.c  ./mandatory/sa_pa_ra_rra.c  ./mandatory/sb_pb_rb_rrb.c  \
-		./mandatory/ss_rr_rrr.c  ./mandatory/stack_len_disp.c  ./mandatory/sorting.c
+		./mandatory/ss_rr_rrr.c  ./mandatory/stack_len_disp.c  ./mandatory/sorting.c  ./mandatory/sorting1.c
 
 OFILES = ${CFILES:.c=.o}
 
@@ -16,6 +16,7 @@ YELLOW=\033[1;33m
 NC=\033[0m
 GREEN=\033[0;32m
 RED=\033[0;31m
+DARKVIOLET=\033[1;5;1;36m
 
 define HEADER_M
 
@@ -55,8 +56,8 @@ define HEADER_B
 |*⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻*|
 |*                   _                                    _       *|
 |*   _ __  _   _ ___| |__      _____      ____ _ _ __    | |__    *|
-|*  | '_ \| | | / __| '_ \    / __\ \ /\ / /  _`| '_ \   | '_ \   *|
-|*  | |_) | |_| \__ \ | | |    \__ \\ V  V / (_| | |_)|   | |_) |  *|
+|*  | '_ \| | | / __| '_ \    / __\ \ /\ / / _` | '_ \   | '_ \   *|
+|*  | |_) | |_| \__ \ | | |    \__ \\ V  V / (_| | |_) |  | |_) |  *|
 |*  | .__/ \__,_|___/_| |_|___|___/ \_/\_/ \__,_| .__/___|_.__/   *|
 |*  |_|                  |_____|                |_| |_____|       *|
 |*________________________________________________________________*|
@@ -75,10 +76,10 @@ ${NAME} : print_header_m ${OFILES}
 	@echo "${YELLOW}$(NAME) created ${NC}"
 
 print_header_m:
-	@echo " ${RED}$$HEADER_M${NC} "
+	@echo " ${DARKVIOLET}$$HEADER_M${NC} "
 
 print_header_b:
-	@echo " ${RED}$$HEADER_B${NC} "
+	@echo " ${DARKVIOLET}$$HEADER_B${NC} "
 
 %.o:%.c ${INC}
 	@${CC} ${W} -o $@ -c $<
