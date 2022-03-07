@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 10:53:34 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/05 17:36:05 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/07 16:27:50 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	display_b(t_inf_sb infb)
 {
 	while (infb.head != NULL)
 	{
-		ft_printf("data = %d | index = %d\n", infb.head->data, infb.head->index);
+		ft_printf("data = %d | index = %d | best_mouv_b = %d | best_mouv_a = %d\n", infb.head->data, infb.head->index, infb.head->best_mouv_b, infb.head->best_mouv_a);
 		infb.head = infb.head->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:14 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/05 17:35:25 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/07 11:43:29 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	data_sa(t_node **s_a, int ac, char **av, t_inf_sa *infa)
 		data.newnode->data = ft_atoi(av[data.j]);
 		data.newnode->next = NULL;
 		data.newnode->index = i + 1;
+		data.newnode->lenght = 1;
 		if (data.newnode->data < infa->small)
 		{
 			infa->small = data.newnode->data;
@@ -320,6 +321,7 @@ int	main(int ac, char *av[])
 		}
 		initial_data(&infa, &infb, &s_a, &s_b);
 		infa.head->data = ft_atoi(av[1]);
+		infa.head->lenght = 1;
 		infa.small = infa.head->data;
 		data_sa(&s_a, ac, av, &infa);
 		len_stack_a(&infa);

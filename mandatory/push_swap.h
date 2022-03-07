@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:24 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/05 17:51:14 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/07 18:56:22 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct node
 	int			data;
 	struct node	*next;
 	struct node	*prev;
+	int			best_mouv_b;
+	int			best_mouv_a;
 	int			index;
 	int			lenght;
 	int			sub_s;
@@ -51,6 +53,15 @@ typedef struct info2
 	t_node	*head;
 	t_node	*tail;
 }	t_inf_sb;
+
+//**********Project_Data***************
+
+typedef struct best_mouv
+{
+	int	best_mouv_index;
+	int	mouv_a;
+	int	mouv_b;
+}	t_best_mouv;
 
 //**********Project_Data***************
 
@@ -87,6 +98,6 @@ void	sort(t_inf_sa *infa, t_inf_sb *infb);
 void	long_i_s_index(t_inf_sa *infa, t_inf_sb *infb);
 void	long_i_s(t_inf_sa *infa, t_inf_sb *infb);
 void	start_sorting(t_inf_sa *infa, t_inf_sb *infb, int *tab);
-// void	found_sub_s(t_data *data, int nember_befor, int index_befor);
+void	index_stack(t_inf_sa *infa, t_inf_sb *infb);
 
 #endif

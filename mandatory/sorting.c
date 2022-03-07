@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:43:27 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/05 17:53:25 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/07 12:57:39 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,26 +85,23 @@ void	sort(t_inf_sa *infa, t_inf_sb *infb)
 	t_data	data;
 	int		i;
 
-	(void)infb;
 	i = -1;
-	if (infa->small_index >= (infa->len / 2))
-	{
-		while (infa->head->data != infa->small)
-			rra(infa);
-	}
-	else
-	{
-		while (infa->head->data != infa->small)
-			ra(infa);
-	}
 	data.tmp = infa->head;
-	infa->small_index = 0;
-	while (data.tmp)
+	data.tmp2 = infa->tail;
+	data.tmp3 = infa->head;
+	while (data.tmp3->data != infa->small)
+		data.tmp3 = data.tmp3->next;
+	if (data.tmp3 != data.tmp)
 	{
-		data.tmp->index = i + 1;
-		data.tmp->lenght = 1;
-		data.tmp = data.tmp->next;
-		i++;
+		data.tmp4 = data.tmp3->prev;
+		data.tmp4->next = NULL;
+		infa->head = data.tmp3;
+		data.tmp3->prev = infa->head;
+		infa->head->prev = NULL;
+		data.tmp2->next = data.tmp;
+		data.tmp->prev = data.tmp2;
+		infa->tail = data.tmp4;
+		index_stack(infa, infb);
 	}
 	long_i_s_index(infa, infb);
 }
