@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:43:33 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/02 17:58:37 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/09 19:12:48 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	sb(t_inf_sb *infb)
 		infb->tail->prev = infb->head;
 		infb->tail->next = NULL;
 	}
+	ft_printf("sb\n");
 }
 
 /* ************************************************************************** */
@@ -68,6 +69,7 @@ void	pb(t_inf_sa *infa, t_inf_sb *infb)
 		infb->len++;
 		infa->len--;
 	}
+	ft_printf("pb\n");
 }
 
 /* ************************************************************************** */
@@ -86,6 +88,7 @@ void	rb(t_inf_sb *infb)
 		data.tmp->next = NULL;
 		infb->tail = data.tmp;
 	}
+	ft_printf("rb\n");
 }
 
 /* ************************************************************************** */
@@ -104,4 +107,5 @@ void	rrb(t_inf_sb *infb)
 		infb->head = data.tmp2;
 		infb->tail->next = NULL;
 	}
+	ft_printf("rrb\n");
 }

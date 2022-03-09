@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:14 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/07 11:43:29 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/09 19:13:08 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 static void	check_isdigit(t_data *data, char **av)
 {
 	data->i = 0;
-
 	while (av[data->j][data->i])
 	{
 		if (av[data->j][data->i] == '-')
@@ -111,186 +110,6 @@ void	initial_data(t_inf_sa *infa, t_inf_sb *infb, t_node **s_a, t_node **s_b)
 
 /* ************************************************************************** */
 
-// void	test(t_inf_sa infa, t_inf_sb infb)
-// {
-// 	display_a(infa);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	ft_printf("----------stack_a-------------\n");
-// 	display_a(infa);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	ft_printf("----------a-------------\n");
-// 	display_a(infa);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	ft_printf("----------a-------------\n");
-// 	display_a(infa);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	ft_printf("----------a-------------\n");
-// 	display_a(infa);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	ft_printf("----------a-------------\n");
-// 	display_a(infa);
-// 	ft_printf("----------a-------------\n");
-// 	display_a(infa);
-// 	ft_printf("----------a-------------\n");
-// 	display_a(infa);
-// 	ft_printf("----------a-------------\n");
-// 	display_a(infa);
-// 	ft_printf("----------a-------------\n");
-// 	display_a(infa);
-// 	ft_printf("----------a-------------\n");
-// 	display_a(infa);
-// 	ft_printf("----------a-------------\n");
-// 	display_a(infa);
-// 	sb(&infb);
-// 	ft_printf("----------swap_b-------------\n");
-// 	display_b(infb);
-// 	ft_printf("----------stack_a-------------\n");
-// 	display_a(infa);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	sb(&infb);
-// 	ft_printf("----------swap_b-------------\n");
-// 	display_b(infb);
-// 	ss(&infa, &infb);
-// 	ft_printf("----------ss-------------\n");
-// 	display_a(infa);
-// 	ft_printf("-ss-\n");
-// 	display_b(infb);
-// 	sa(&infa);
-// 	ft_printf("----------swap_a-------------\n");
-// 	display_a(infa);
-// 	rra(&infa);
-// 	ft_printf("----------rra-------------\n");
-// 	display_a(infa);
-// 	ra(&infa);
-// 	ft_printf("----------ra-------------\n");
-// 	display_a(infa);
-// 	rb(&infb);
-// 	ft_printf("----------rb-------------\n");
-// 	display_b(infb);
-// 	rrb(&infb);
-// 	ft_printf("----------rrb-------------\n");
-// 	display_b(infb);
-// 	rrr(&infa, &infb);
-// 	ft_printf("----------rrr-------------\n");
-// 	display_a(infa);
-// 	ft_printf("-rrr-\n");
-// 	display_b(infb);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	pa(&infa, &infb);
-// 	ft_printf("----------push_a-------------\n");
-// 	display_a(infa);
-// 	ft_printf("-b-\n");
-// 	display_b(infb);
-// 	ft_printf("-b-\n");
-// 	display_b(infb);
-// 	ft_printf("-b-\n");
-// 	display_b(infb);
-// 	ft_printf("-b-\n");
-// 	display_b(infb);
-// 	ft_printf("-b-\n");
-// 	display_b(infb);
-// 	ft_printf("-b-\n");
-// 	display_b(infb);
-// 	ft_printf("-b-\n");
-// 	display_b(infb);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	rb(&infb);
-// 	ft_printf("----------rb-------------\n");
-// 	display_b(infb);
-// 	rrb(&infb);
-// 	ft_printf("----------rrb-------------\n");
-// 	display_b(infb);
-// 	rrr(&infa, &infb);
-// 	ft_printf("----------rrr-------------\n");
-// 	display_a(infa);
-// 	ft_printf("-rrr-\n");
-// 	display_b(infb);
-// 	pb(&infa, &infb);
-// 	ft_printf("----------push_b-------------\n");
-// 	display_b(infb);
-// 	rb(&infb);
-// 	ft_printf("----------rb-------------\n");
-// 	display_b(infb);
-// 	rrb(&infb);
-// 	ft_printf("----------rrb-------------\n");
-// 	display_b(infb);
-// 	rrb(&infb);
-// 	ft_printf("----------rrb-------------\n");
-// 	display_b(infb);
-// }
-
-/* ************************************************************************** */
-
 int	main(int ac, char *av[])
 {
 	t_node		*s_a;
@@ -327,10 +146,10 @@ int	main(int ac, char *av[])
 		len_stack_a(&infa);
 		check_dup(&infa);
 		sort(&infa, &infb);
-		ft_printf("----------stack_a----------\n");
-		display_a(infa);
-		ft_printf("----------stack_b----------\n");
-		display_b(infb);
+		// ft_printf("----------stack_a----------\n");
+		// display_a(infa);
+		// ft_printf("----------stack_b----------\n");
+		// display_b(infb);
 	}
 	else
 	{

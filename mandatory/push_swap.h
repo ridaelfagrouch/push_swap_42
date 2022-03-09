@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:24 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/07 18:56:22 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/09 18:51:27 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ typedef struct node
 	struct node	*prev;
 	int			best_mouv_b;
 	int			best_mouv_a;
+	int			index_best_mouv_a;
 	int			index;
+	int			fack_index;
 	int			lenght;
 	int			sub_s;
 }	t_node;
@@ -59,6 +61,9 @@ typedef struct info2
 typedef struct best_mouv
 {
 	int	best_mouv_index;
+	int	best_mouv_data;
+	int	index_best_mouv_a;
+	int	index_best_mouv_b;
 	int	mouv_a;
 	int	mouv_b;
 }	t_best_mouv;
@@ -72,6 +77,7 @@ typedef struct data
 	int		end;
 	t_node	*newnode;
 	t_node	*tmp;
+	t_node	*tmp1;
 	t_node	*tmp2;
 	t_node	*tmp3;
 	t_node	*tmp4;
@@ -95,9 +101,14 @@ void	rrr(t_inf_sa *infa, t_inf_sb *infb);
 void	display_a(t_inf_sa infa);
 void	display_b(t_inf_sb infb);
 void	sort(t_inf_sa *infa, t_inf_sb *infb);
-void	long_i_s_index(t_inf_sa *infa, t_inf_sb *infb);
-void	long_i_s(t_inf_sa *infa, t_inf_sb *infb);
+void	long_i_s_index(t_inf_sa *infa);
+void	long_i_s(t_inf_sa *infa, t_inf_sb *infb, t_data *data, t_inf_sa *original);
 void	start_sorting(t_inf_sa *infa, t_inf_sb *infb, int *tab);
 void	index_stack(t_inf_sa *infa, t_inf_sb *infb);
+void	found_mouv_stack_b(t_inf_sa *infa, t_inf_sb *infb);
+void	found_mouv_stack_a(t_inf_sa *infa, t_inf_sb *infb);
+void	best_mouv(t_inf_sb *infb, t_best_mouv *mouv);
+void	start_oper(t_inf_sa *infa, t_inf_sb *infb, t_best_mouv	*mouv);
+void	found_index_small(t_inf_sa *infa);
 
 #endif
