@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:24 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/11 18:44:25 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/11 21:49:45 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct node
 	struct node	*prev;
 	int			index;
 	int			lenght;
-	int			best_mouv_lis;
+	int			b_m_lis;
 	int			sub_s;
 }	t_node;
 
@@ -65,11 +65,6 @@ typedef struct info2
 typedef struct best_mouv
 {
 	int	best_mouv_index;
-	int	best_mouv_data;
-	int	index_best_mouv_a;
-	int	index_best_mouv_b;
-	int	mouv_a;
-	int	mouv_b;
 }	t_best_mouv;
 
 //**********Project_Data***************

@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:43:27 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/11 21:03:45 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/11 23:05:27 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	*stor_long_i_s(t_inf_sa infa, t_data *data, int *count)
 		exit(1);
 	data->tmp1 = data->temp;
 	tab[0] = data->tmp1->data;
+	ft_printf("%d\n", tab[0]);
 	sub = data->tmp1->sub_s;
 	while (data->tmp1 != infa.head)
 	{
@@ -49,17 +50,12 @@ int	*stor_long_i_s(t_inf_sa infa, t_data *data, int *count)
 		if (data->tmp1->index == sub)
 		{
 			tab[i] = data->tmp1->data;
+			ft_printf("%d\n", tab[i]);
 			sub = data->tmp1->sub_s;
 			i++;
 		}
 	}
-	i = 0;
-	while(i < *count)
-	{
-		ft_printf("tab[%d] = %d\n", i, tab[i]);
-		i++;
-	}
-	return(tab);
+	return (tab);
 }
 
 /* ************************************************************************** */
@@ -89,9 +85,9 @@ void	best_mouv_l_i_s(t_inf_sa *infa, t_inf_sb *infb, int *tab)
 	while (data.tmp)
 	{
 		if (data.tmp->index > (infa->len / 2))
-			data.tmp->best_mouv_lis = infa->len - data.tmp->index;
+			data.tmp->b_m_lis = infa->len - data.tmp->index;
 		else
-			data.tmp->best_mouv_lis = data.tmp->index;
+			data.tmp->b_m_lis = data.tmp->index;
 		data.tmp = data.tmp->next;
 	}
 	while (i <= infa->l_i_sub_len - 1)
@@ -101,12 +97,68 @@ void	best_mouv_l_i_s(t_inf_sa *infa, t_inf_sb *infb, int *tab)
 		{
 			if (data.tmp1->data == tab[i])
 			{
-				data.tmp1->best_mouv_lis = -1;
+				data.tmp1->b_m_lis = -1;
 				break ;
 			}
 			data.tmp1 = data.tmp1->next;
 		}
 		i++;
+	}
+}
+
+/* ************************************************************************** */
+
+void	best_mouv_(t_inf_sa *infa, t_best_mouv *best)
+{
+	t_data	data;
+	int		b_mouv;
+
+	data.tmp = infa->head;
+	b_mouv = infa->len;
+	while (data.tmp)
+	{
+		if (data.tmp->b_m_lis == -1)
+			data.tmp = data.tmp->next;
+		if (data.tmp->b_m_lis != -1 && data.tmp->b_m_lis < b_mouv)
+		{
+			b_mouv = data.tmp->b_m_lis;
+			best->best_mouv_index = data.tmp->index;
+			data.tmp = data.tmp->next;
+		}
+		else
+			data.tmp = data.tmp->next;
+	}
+}
+
+/* ************************************************************************** */
+
+void	push_no_lis(t_inf_sa *infa, t_inf_sb *infb, int *tab)
+{
+	t_best_mouv	best;
+	t_data		data;
+
+	data.i = 0;
+	data.j = infa->len;
+	while (data.i < (data.j - infa->l_i_sub_len))
+	{
+		best_mouv_l_i_s(infa, infb, tab);
+		best_mouv_(infa, &best);
+		data.tmp = infa->head;
+		while (data.tmp->index != best.best_mouv_index)
+			data.tmp = data.tmp->next;
+		if (best.best_mouv_index > infa->len / 2)
+		{
+			while (data.tmp != infa->head)
+				rra(infa);
+		}
+		else
+		{
+			while (data.tmp != infa->head)
+				ra(infa);
+		}
+		pb(infa, infb);
+		index_stack(infa, infb);
+		data.i++;
 	}
 }
 
@@ -134,11 +186,12 @@ void	long_i_s(t_inf_sa *infa, t_inf_sb *infb, t_data *data, t_inf_sa *original)
 			sub = data->tmp1->sub_s;
 		}
 	}
+	(void)original;
 	infa->l_i_sub_len = count;
 	tab = stor_long_i_s(*infa, data, &count);
 	native_infa(data, original, infa);
 	index_stack(infa, infb);
-	best_mouv_l_i_s(infa, infb, tab);
+	push_no_lis(infa, infb, tab);
 }
 
 /* ************************************************************************** */
