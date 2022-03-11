@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:24 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/09 18:51:27 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:44:25 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,17 @@ typedef struct node
 	int			data;
 	struct node	*next;
 	struct node	*prev;
-	int			best_mouv_b;
-	int			best_mouv_a;
-	int			index_best_mouv_a;
 	int			index;
-	int			fack_index;
 	int			lenght;
+	int			best_mouv_lis;
 	int			sub_s;
 }	t_node;
+
+typedef struct newnode
+{
+	int				data;
+	struct newnode	*next;
+}	t_node_long;
 
 //**********Stack_A_info***************
 
@@ -42,6 +45,7 @@ typedef struct info1
 	int		len;
 	int		small;
 	int		small_index;
+	int		l_i_sub_len;
 	t_node	*head;
 	t_node	*tail;
 }	t_inf_sa;
@@ -81,6 +85,7 @@ typedef struct data
 	t_node	*tmp2;
 	t_node	*tmp3;
 	t_node	*tmp4;
+	t_node	*temp;
 }	t_data;
 
 //**********Function_prototype**********

@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:14 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/09 19:13:08 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/11 20:14:35 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	data_sa(t_node **s_a, int ac, char **av, t_inf_sa *infa)
 		data.newnode->next = NULL;
 		data.newnode->index = i + 1;
 		data.newnode->lenght = 1;
+		data.newnode->sub_s = -1;
 		if (data.newnode->data < infa->small)
 		{
 			infa->small = data.newnode->data;
@@ -106,6 +107,7 @@ void	initial_data(t_inf_sa *infa, t_inf_sb *infb, t_node **s_a, t_node **s_b)
 	infa->head->next = NULL;
 	infa->head->index = 0;
 	infa->small_index = 0;
+	infa->head->sub_s = -1;
 }
 
 /* ************************************************************************** */
@@ -146,8 +148,8 @@ int	main(int ac, char *av[])
 		len_stack_a(&infa);
 		check_dup(&infa);
 		sort(&infa, &infb);
-		// ft_printf("----------stack_a----------\n");
-		// display_a(infa);
+		ft_printf("----------stack_a----------\n");
+		display_a(infa);
 		// ft_printf("----------stack_b----------\n");
 		// display_b(infb);
 	}

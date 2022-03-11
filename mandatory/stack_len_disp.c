@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 10:53:34 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/09 16:57:28 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/11 19:02:51 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	display_a(t_inf_sa infa)
 {
 	while (infa.head != NULL)
 	{
-		ft_printf("data = %d | index = %d | fack_index = %d\n", infa.head->data, infa.head->index, infa.head->fack_index);
+		ft_printf("data = %d | index = %d | lenght = %d | sub = %d | best_mouv_lis = %d\n", infa.head->data, infa.head->index, infa.head->lenght, infa.head->sub_s, infa.head->best_mouv_lis);
 		infa.head = infa.head->next;
 	}
 }
@@ -59,7 +59,31 @@ void	display_b(t_inf_sb infb)
 {
 	while (infb.head != NULL)
 	{
-		ft_printf("data = %d | index = %d | best_mouv_b = %d | best_mouv_a = %d | index_best_mouv = %d\n", infb.head->data, infb.head->index,  infb.head->best_mouv_b, infb.head->best_mouv_a, infb.head->index_best_mouv_a);
+		ft_printf("data = %d | index = %d\n", infb.head->data, infb.head->index);
 		infb.head = infb.head->next;
+	}
+}
+
+/* ************************************************************************** */
+
+void	index_stack(t_inf_sa *infa, t_inf_sb *infb)
+{
+	t_data	data;
+
+	data.i = -1;
+	data.tmp = infa->head;
+	data.tmp2 = infb->head;
+	while (data.tmp)
+	{
+		data.tmp->index = data.i + 1;
+		data.tmp = data.tmp->next;
+		data.i++;
+	}
+	data.i = -1;
+	while (data.tmp2)
+	{
+		data.tmp2->index = data.i + 1;
+		data.tmp2 = data.tmp2->next;
+		data.i++;
 	}
 }
