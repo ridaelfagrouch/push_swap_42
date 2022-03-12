@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:43:27 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/11 23:05:27 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/12 18:08:54 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	max_lenght(t_data *data, int *max_lenght)
 
 /* ************************************************************************** */
 
-int	*stor_long_i_s(t_inf_sa infa, t_data *data, int *count)
+int	*stor_long_i_s(t_infsa infa, t_data *data, int *count)
 {
 	int	sub;
 	int	i;
@@ -42,7 +42,6 @@ int	*stor_long_i_s(t_inf_sa infa, t_data *data, int *count)
 		exit(1);
 	data->tmp1 = data->temp;
 	tab[0] = data->tmp1->data;
-	ft_printf("%d\n", tab[0]);
 	sub = data->tmp1->sub_s;
 	while (data->tmp1 != infa.head)
 	{
@@ -50,7 +49,6 @@ int	*stor_long_i_s(t_inf_sa infa, t_data *data, int *count)
 		if (data->tmp1->index == sub)
 		{
 			tab[i] = data->tmp1->data;
-			ft_printf("%d\n", tab[i]);
 			sub = data->tmp1->sub_s;
 			i++;
 		}
@@ -60,7 +58,7 @@ int	*stor_long_i_s(t_inf_sa infa, t_data *data, int *count)
 
 /* ************************************************************************** */
 
-void	native_infa(t_data *data, t_inf_sa *original, t_inf_sa *infa)
+void	native_infa(t_data *data, t_infsa *original, t_infsa *infa)
 {
 	data->tmp4->next = data->tmp3;
 	data->tmp3->prev = data->tmp4;
@@ -74,65 +72,74 @@ void	native_infa(t_data *data, t_inf_sa *original, t_inf_sa *infa)
 
 /* ************************************************************************** */
 
-void	best_mouv_l_i_s(t_inf_sa *infa, t_inf_sb *infb, int *tab)
+void	best_mouv_l_i_s(t_infsa *infa, int *tab)
 {
 	t_data	data;
-	int		i;
 
-	(void)infb;
 	data.tmp = infa->head;
-	i = 0;
+	data.i = 0;
 	while (data.tmp)
 	{
 		if (data.tmp->index > (infa->len / 2))
-			data.tmp->b_m_lis = infa->len - data.tmp->index;
+			data.tmp->best_mvb = infa->len - data.tmp->index;
 		else
-			data.tmp->b_m_lis = data.tmp->index;
+			data.tmp->best_mvb = data.tmp->index;
 		data.tmp = data.tmp->next;
 	}
-	while (i <= infa->l_i_sub_len - 1)
+	while (data.i <= infa->l_i_sub_len - 1)
 	{
 		data.tmp1 = infa->head;
 		while (data.tmp1)
 		{
-			if (data.tmp1->data == tab[i])
+			if (data.tmp1->data == tab[data.i])
 			{
-				data.tmp1->b_m_lis = -1;
+				data.tmp1->best_mvb = -1;
 				break ;
 			}
 			data.tmp1 = data.tmp1->next;
 		}
-		i++;
+		data.i++;
 	}
 }
 
 /* ************************************************************************** */
 
-void	best_mouv_(t_inf_sa *infa, t_best_mouv *best)
+void	best_mouv_(t_infsa *infa, t_best_mouv *best)
 {
 	t_data	data;
 	int		b_mouv;
+	int		i;
 
 	data.tmp = infa->head;
 	b_mouv = infa->len;
+	i = 0;
 	while (data.tmp)
 	{
-		if (data.tmp->b_m_lis == -1)
-			data.tmp = data.tmp->next;
-		if (data.tmp->b_m_lis != -1 && data.tmp->b_m_lis < b_mouv)
+		while (i < infa->len && data.tmp->best_mvb == -1)
 		{
-			b_mouv = data.tmp->b_m_lis;
+			data.tmp = data.tmp->next;
+			i++;
+		}
+		if (i == infa->len)
+			break ;
+		if (data.tmp->best_mvb != -1 && data.tmp->best_mvb < b_mouv)
+		{
+			b_mouv = data.tmp->best_mvb;
 			best->best_mouv_index = data.tmp->index;
 			data.tmp = data.tmp->next;
+			i++;
 		}
 		else
+		{
 			data.tmp = data.tmp->next;
+			i++;
+		}
 	}
 }
 
 /* ************************************************************************** */
 
-void	push_no_lis(t_inf_sa *infa, t_inf_sb *infb, int *tab)
+void	push_no_lis(t_infsa *infa, t_infsb *infb, int *tab)
 {
 	t_best_mouv	best;
 	t_data		data;
@@ -141,7 +148,7 @@ void	push_no_lis(t_inf_sa *infa, t_inf_sb *infb, int *tab)
 	data.j = infa->len;
 	while (data.i < (data.j - infa->l_i_sub_len))
 	{
-		best_mouv_l_i_s(infa, infb, tab);
+		best_mouv_l_i_s(infa, tab);
 		best_mouv_(infa, &best);
 		data.tmp = infa->head;
 		while (data.tmp->index != best.best_mouv_index)
@@ -157,14 +164,16 @@ void	push_no_lis(t_inf_sa *infa, t_inf_sb *infb, int *tab)
 				ra(infa);
 		}
 		pb(infa, infb);
+		infb->head->best_mva = -1;
 		index_stack(infa, infb);
 		data.i++;
 	}
+	index_stack(infa, infb);
 }
 
 /* ************************************************************************** */
 
-void	long_i_s(t_inf_sa *infa, t_inf_sb *infb, t_data *data, t_inf_sa *original)
+void	long_i_s(t_infsa *infa, t_infsb *infb, t_data *data, t_infsa *original)
 {
 	int		*tab;
 	int		max_len;
@@ -186,7 +195,6 @@ void	long_i_s(t_inf_sa *infa, t_inf_sb *infb, t_data *data, t_inf_sa *original)
 			sub = data->tmp1->sub_s;
 		}
 	}
-	(void)original;
 	infa->l_i_sub_len = count;
 	tab = stor_long_i_s(*infa, data, &count);
 	native_infa(data, original, infa);
@@ -196,7 +204,7 @@ void	long_i_s(t_inf_sa *infa, t_inf_sb *infb, t_data *data, t_inf_sa *original)
 
 /* ************************************************************************** */
 
-void	long_i_s_index(t_inf_sa *infa)
+void	long_i_s_index(t_infsa *infa)
 {
 	t_data	data;
 	int		nember_befor;
@@ -235,10 +243,10 @@ void	long_i_s_index(t_inf_sa *infa)
 
 /* ************************************************************************** */
 
-void	sort(t_inf_sa *infa, t_inf_sb *infb)
+void	sort(t_infsa *infa, t_infsb *infb)
 {
 	t_data		data;
-	t_inf_sa	original;
+	t_infsa	original;
 	int			i;
 
 	i = -1;
@@ -262,4 +270,5 @@ void	sort(t_inf_sa *infa, t_inf_sb *infb)
 	}
 	long_i_s_index(infa);
 	long_i_s(infa, infb, &data, &original);
+	start_sort(infa, infb);
 }

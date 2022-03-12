@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:43:43 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/10 18:48:17 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/12 11:26:17 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* ************************************************************************** */
 
-void	ssb(t_inf_sb *infb)
+void	ssb(t_infsb *infb)
 {
 	t_data	data;
 
@@ -42,7 +42,7 @@ void	ssb(t_inf_sb *infb)
 
 /* ************************************************************************** */
 
-void	ss(t_inf_sa *infa, t_inf_sb *infb)
+void	ss(t_infsa *infa, t_infsb *infb)
 {
 	t_data	data;
 
@@ -72,7 +72,7 @@ void	ss(t_inf_sa *infa, t_inf_sb *infb)
 
 /* ************************************************************************** */
 
-void	rr(t_inf_sa *infa, t_inf_sb *infb)
+void	rr(t_infsa *infa, t_infsb *infb)
 {
 	t_data	data;
 
@@ -101,7 +101,7 @@ void	rr(t_inf_sa *infa, t_inf_sb *infb)
 
 /* ************************************************************************** */
 
-void	rrr(t_inf_sa *infa, t_inf_sb *infb)
+void	rrr(t_infsa *infa, t_infsb *infb)
 {
 	t_data	data;
 

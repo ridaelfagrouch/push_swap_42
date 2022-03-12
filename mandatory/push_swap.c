@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:14 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/11 22:31:58 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/12 16:57:13 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,12 @@ static void	check_isdigit(t_data *data, char **av)
 
 /* ************************************************************************** */
 
-static void	data_sa(t_node **s_a, int ac, char **av, t_inf_sa *infa)
+static void	data_sa(t_node **s_a, int ac, char **av, t_infsa *infa)
 {
 	t_data	data;
-	int		i;
 
 	data.j = 2;
-	i = 0;
+	data.i = 0;
 	infa->head = *s_a;
 	infa->tail = *s_a;
 	while (data.j < ac)
@@ -51,7 +50,7 @@ static void	data_sa(t_node **s_a, int ac, char **av, t_inf_sa *infa)
 		check_isdigit(&data, av);
 		data.newnode->data = ft_atoi(av[data.j]);
 		data.newnode->next = NULL;
-		data.newnode->index = i + 1;
+		data.newnode->index = data.i + 1;
 		data.newnode->lenght = 1;
 		data.newnode->sub_s = -1;
 		if (data.newnode->data < infa->small)
@@ -63,13 +62,13 @@ static void	data_sa(t_node **s_a, int ac, char **av, t_inf_sa *infa)
 		data.newnode->prev = infa->tail;
 		infa->tail = data.newnode;
 		data.j++;
-		i++;
+		data.i++;
 	}
 }
 
 /* ************************************************************************** */
 
-static void	check_dup(t_inf_sa *infa)
+static void	check_dup(t_infsa *infa)
 {
 	t_data	data;
 
@@ -93,7 +92,7 @@ static void	check_dup(t_inf_sa *infa)
 
 /* ************************************************************************** */
 
-void	initial_data(t_inf_sa *infa, t_inf_sb *infb, t_node **s_a, t_node **s_b)
+static void	initial_data(t_infsa *infa, t_infsb *infb, t_node **s_a, t_node **s_b)
 {
 	infa->head = *s_a;
 	infa->tail = *s_a;
@@ -116,8 +115,8 @@ int	main(int ac, char *av[])
 {
 	t_node		*s_a;
 	t_node		*s_b;
-	t_inf_sa	infa;
-	t_inf_sb	infb;
+	t_infsa	infa;
+	t_infsb	infb;
 	int			j;
 
 	j = 0;
@@ -150,8 +149,8 @@ int	main(int ac, char *av[])
 		sort(&infa, &infb);
 		ft_printf("----------stack_a----------\n");
 		display_a(infa);
-		// ft_printf("----------stack_b----------\n");
-		// display_b(infb);
+		ft_printf("----------stack_b----------\n");
+		display_b(infb);
 	}
 	else
 	{

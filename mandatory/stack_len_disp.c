@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 10:53:34 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/11 21:53:23 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/12 12:59:51 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* ************************************************************************** */
 
-void	len_stack_a(t_inf_sa *infa)
+void	len_stack_a(t_infsa *infa)
 {
 	t_data	data;
 
@@ -29,7 +29,7 @@ void	len_stack_a(t_inf_sa *infa)
 
 /* ************************************************************************** */
 
-void	len_stack_b(t_inf_sb *infb)
+void	len_stack_b(t_infsb *infb)
 {
 	t_data	data;
 
@@ -44,29 +44,29 @@ void	len_stack_b(t_inf_sb *infb)
 
 /* ************************************************************************** */
 
-void	display_a(t_inf_sa infa)
+void	display_a(t_infsa infa)
 {
 	while (infa.head != NULL)
 	{
-		ft_printf("data = %d | index = %d | lenght = %d | sub = %d | best_mouv_lis = %d\n", infa.head->data, infa.head->index, infa.head->lenght, infa.head->sub_s, infa.head->b_m_lis);
+		ft_printf("data = %d | index = %d | lenght = %d | sub = %d | best_mouv_lis = %d\n", infa.head->data, infa.head->index, infa.head->lenght, infa.head->sub_s, infa.head->best_mvb);
 		infa.head = infa.head->next;
 	}
 }
 
 /* ************************************************************************** */
 
-void	display_b(t_inf_sb infb)
+void	display_b(t_infsb infb)
 {
 	while (infb.head != NULL)
 	{
-		ft_printf("data = %d | index = %d\n", infb.head->data, infb.head->index);
+		ft_printf("data = %d | index = %d | best_mv_b = %d | best_mv_a = %d | best_mvb_index = %d\n", infb.head->data, infb.head->index, infb.head->best_mvb, infb.head->best_mva, infb.head->best_mvb_index);
 		infb.head = infb.head->next;
 	}
 }
 
 /* ************************************************************************** */
 
-void	index_stack(t_inf_sa *infa, t_inf_sb *infb)
+void	index_stack(t_infsa *infa, t_infsb *infb)
 {
 	t_data	data;
 
