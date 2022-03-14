@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:43:27 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/12 18:08:54 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:18:55 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,8 @@ void	long_i_s(t_infsa *infa, t_infsb *infb, t_data *data, t_infsa *original)
 	}
 	infa->l_i_sub_len = count;
 	tab = stor_long_i_s(*infa, data, &count);
-	native_infa(data, original, infa);
+	if (original->head != infa->head)
+		native_infa(data, original, infa);
 	index_stack(infa, infb);
 	push_no_lis(infa, infb, tab);
 }
@@ -246,27 +247,35 @@ void	long_i_s_index(t_infsa *infa)
 void	sort(t_infsa *infa, t_infsb *infb)
 {
 	t_data		data;
-	t_infsa	original;
+	t_infsa		original;
 	int			i;
 
 	i = -1;
-	original.head = infa->head;
-	original.tail = infa->tail;
-	data.tmp = infa->head;
-	data.tmp2 = infa->tail;
-	data.tmp3 = infa->head;
-	while (data.tmp3->data != infa->small)
-		data.tmp3 = data.tmp3->next;
-	if (data.tmp3 != data.tmp)
+	if (infa->head->data != infa->small)
 	{
-		data.tmp4 = data.tmp3->prev;
-		data.tmp4->next = NULL;
-		infa->head = data.tmp3;
-		infa->head->prev = NULL;
-		data.tmp2->next = data.tmp;
-		data.tmp->prev = data.tmp2;
-		infa->tail = data.tmp4;
-		index_stack(infa, infb);
+		original.head = infa->head;
+		original.tail = infa->tail;
+		data.tmp = infa->head;
+		data.tmp2 = infa->tail;
+		data.tmp3 = infa->head;
+		while (data.tmp3->data != infa->small)
+			data.tmp3 = data.tmp3->next;
+		if (data.tmp3 != data.tmp)
+		{
+			data.tmp4 = data.tmp3->prev;
+			data.tmp4->next = NULL;
+			infa->head = data.tmp3;
+			infa->head->prev = NULL;
+			data.tmp2->next = data.tmp;
+			data.tmp->prev = data.tmp2;
+			infa->tail = data.tmp4;
+			index_stack(infa, infb);
+		}
+	}
+	else
+	{
+		original.head = infa->head;
+		original.tail = infa->tail;
 	}
 	long_i_s_index(infa);
 	long_i_s(infa, infb, &data, &original);

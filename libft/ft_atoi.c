@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rel-fagr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 12:00:49 by rel-fagr          #+#    #+#             */
-/*   Updated: 2021/11/11 18:00:12 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/14 19:10:13 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_atoi(const char *str)
 	char			*src;
 	unsigned int	i;
 	int				sign;
-	int				k;
+	int		k;
 
 	i = 0;
 	sign = 1;

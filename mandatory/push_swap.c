@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:14 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/12 16:57:13 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:39:13 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ static void	initial_data(t_infsa *infa, t_infsb *infb, t_node **s_a, t_node **s_
 	infa->head->next = NULL;
 	infa->head->index = 0;
 	infa->small_index = 0;
+	infa->head->lenght = 1;
 	infa->head->sub_s = -1;
 }
 
@@ -141,16 +142,15 @@ int	main(int ac, char *av[])
 		}
 		initial_data(&infa, &infb, &s_a, &s_b);
 		infa.head->data = ft_atoi(av[1]);
-		infa.head->lenght = 1;
 		infa.small = infa.head->data;
 		data_sa(&s_a, ac, av, &infa);
 		len_stack_a(&infa);
 		check_dup(&infa);
 		sort(&infa, &infb);
-		ft_printf("----------stack_a----------\n");
-		display_a(infa);
-		ft_printf("----------stack_b----------\n");
-		display_b(infb);
+		// ft_printf("----------stack_a----------\n");
+		// display_a(infa);
+		// ft_printf("----------stack_b----------\n");
+		// display_b(infb);
 	}
 	else
 	{

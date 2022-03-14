@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:24 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/12 18:09:08 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/14 17:27:06 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,10 @@ typedef struct info2
 typedef struct best_mouv
 {
 	int	best_mouv_index;
+	int	best_mouv_index_a;
 	int	best_mv_a;
 	int	best_mv_b;
+	int	best_mouv_data;
 }	t_best_mouv;
 
 //**********Project_Data***************
@@ -122,5 +124,6 @@ void	check_rang2(t_infsa *infa, t_data *data);
 void	check_rang1(t_infsa *infa, t_data *data);
 void	best_mouv(t_infsb *infb, t_best_mouv *mouv);
 void	start_sort(t_infsa *infa, t_infsb *infb);
+void	check_small_index(t_infsa *infa);
 
 #endif
