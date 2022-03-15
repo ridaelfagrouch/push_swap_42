@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:24 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/14 17:27:06 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:38:23 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <unistd.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include "../libft/libft.h"
@@ -125,5 +126,15 @@ void	check_rang1(t_infsa *infa, t_data *data);
 void	best_mouv(t_infsb *infb, t_best_mouv *mouv);
 void	start_sort(t_infsa *infa, t_infsb *infb);
 void	check_small_index(t_infsa *infa);
+void	sorting_case1(t_infsa *infa, t_infsb *infb, \
+	t_best_mouv	*mouv, t_data *data);
+void	sorting_case2(t_infsa *infa, t_infsb *infb, \
+	t_best_mouv	*mouv, t_data *data);
+void	sorting_case3(t_infsa *infa, t_infsb *infb, \
+	t_best_mouv *mouv, t_data *data);
+void	sorting_case4(t_infsa *infa, t_infsb *infb, \
+	t_best_mouv *mouv, t_data *data);
+void	sorting_case5(t_infsa *infa, t_infsb *infb, \
+	t_best_mouv *mouv, t_data *data);
 
 #endif

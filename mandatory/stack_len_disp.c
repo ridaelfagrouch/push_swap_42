@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 10:53:34 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/12 12:59:51 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/14 22:28:07 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,3 +87,4 @@ void	index_stack(t_infsa *infa, t_infsb *infb)
 		data.i++;
 	}
 }
+

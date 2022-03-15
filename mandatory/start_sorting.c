@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:54:41 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/14 17:36:37 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/15 16:27:58 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,18 @@ void	last_sort(t_infsa *infa)
 	}
 }
 
+
+/* ************************************************************************** */
+
+void	found_best_mouv(t_infsa *infa, t_infsb *infb, t_best_mouv *mouv)
+{
+	index_stack(infa, infb);
+	initial_best_mv(infb);
+	found_mouv_stack_b(infb);
+	found_mouv_stack_a(infa, infb);
+	best_mouv(infb, mouv);
+}
+
 /* ************************************************************************** */
 
 void	start_sort(t_infsa *infa, t_infsb *infb)
@@ -93,115 +105,23 @@ void	start_sort(t_infsa *infa, t_infsb *infb)
 
 	while (infb->len != 0)
 	{
-		index_stack(infa, infb);
-		initial_best_mv(infb);
-		found_mouv_stack_b(infb);
-		found_mouv_stack_a(infa, infb);
-		best_mouv(infb, &mouv);
+		found_best_mouv(infa, infb, &mouv);
 		data.tmp2 = infb->head;
 		data.tmp1 = infa->head;
 		if (mouv.best_mouv_index_a > infa->tail->index)
-		{
-			while (data.tmp2->data != mouv.best_mouv_data)
-			{
-				if (mouv.best_mouv_index > (infb->len / 2))
-				{
-					rrb(infb);
-					data.tmp2 = infb->head;
-				}
-				else
-				{
-					rb(infb);
-					data.tmp2 = infb->head;
-				}
-			}
-			pa(infa, infb);
-			ra(infa);
-		}
-		else if ((mouv.best_mouv_index_a > infa->len / 2) && (mouv.best_mouv_index > infb->len / 2))
-		{
-			while ((data.tmp1->index != mouv.best_mouv_index_a) && (data.tmp2->data != mouv.best_mouv_data))
-			{
-				rrr(infa, infb);
-				data.tmp1 = infa->head;
-				data.tmp2 = infb->head;
-			}
-			while (data.tmp1->index != mouv.best_mouv_index_a)
-			{
-				rra(infa);
-				data.tmp1 = infa->head;
-			}
-			while (data.tmp2->data != mouv.best_mouv_data)
-			{
-				rrb(infb);
-				data.tmp2 = infb->head;
-			}
-			pa(infa, infb);
-		}
-		else if ((mouv.best_mouv_index_a <= infa->len / 2) && (mouv.best_mouv_index <= infb->len / 2))
-		{
-			while ((data.tmp1->index != mouv.best_mouv_index_a) && (data.tmp2->data != mouv.best_mouv_data))
-			{
-				rr(infa, infb);
-				data.tmp1 = infa->head;
-				data.tmp2 = infb->head;
-			}
-			while (data.tmp1->index != mouv.best_mouv_index_a)
-			{
-				ra(infa);
-				data.tmp1 = infa->head;
-			}
-			while (data.tmp2->data != mouv.best_mouv_data)
-			{
-				rb(infb);
-				data.tmp2 = infb->head;
-			}
-			pa(infa, infb);
-		}
-		else if (mouv.best_mouv_index_a > infa->len / 2)
-		{
-			while (data.tmp2->data != mouv.best_mouv_data)
-			{
-				if (mouv.best_mouv_index > (infb->len / 2))
-				{
-					rrb(infb);
-					data.tmp2 = infb->head;
-				}
-				else
-				{
-					rb(infb);
-					data.tmp2 = infb->head;
-				}
-			}
-			while (data.tmp1->index != mouv.best_mouv_index_a)
-			{
-				rra(infa);
-				data.tmp1 = infa->head;
-			}
-			pa(infa, infb);
-		}
-		else if (mouv.best_mouv_index_a <= infa->len / 2)
-		{
-			while (data.tmp2->data != mouv.best_mouv_data)
-			{
-				if (mouv.best_mouv_index > (infb->len / 2))
-				{
-					rrb(infb);
-					data.tmp2 = infb->head;
-				}
-				else
-				{
-					rb(infb);
-					data.tmp2 = infb->head;
-				}
-			}
-			while (data.tmp1->index != mouv.best_mouv_index_a)
-			{
-				ra(infa);
-				data.tmp1 = infa->head;
-			}
-			pa(infa, infb);
-		}
+			sorting_case1(infa, infb, &mouv, &data);
+		else if ((mouv.best_mouv_index_a > infa->len / 2) && \
+			(mouv.best_mouv_index > infb->len / 2))
+			sorting_case2(infa, infb, &mouv, &data);
+		else if ((mouv.best_mouv_index_a <= infa->len / 2) && \
+			(mouv.best_mouv_index <= infb->len / 2))
+			sorting_case3(infa, infb, &mouv, &data);
+		else if (mouv.best_mouv_index_a > infa->len / 2 && \
+			mouv.best_mouv_index <= infb->len / 2)
+			sorting_case4(infa, infb, &mouv, &data);
+		else if (mouv.best_mouv_index_a <= infa->len / 2 && \
+			mouv.best_mouv_index > infb->len / 2)
+			sorting_case5(infa, infb, &mouv, &data);
 	}
 	index_stack(infa, infb);
 	check_small_index(infa);

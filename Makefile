@@ -1,6 +1,6 @@
 CFILES = ./mandatory/push_swap.c  ./mandatory/sa_pa_ra_rra.c  ./mandatory/sb_pb_rb_rrb.c  \
 		./mandatory/ss_rr_rrr.c  ./mandatory/stack_len_disp.c  ./mandatory/sorting.c  \
-		./mandatory/best_Mvm.c  ./mandatory/start_sorting.c
+		./mandatory/best_Mvm.c  ./mandatory/start_sorting.c  ./mandatory/sorting_cases.c
 
 OFILES = ${CFILES:.c=.o}
 

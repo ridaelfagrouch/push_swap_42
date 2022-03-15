@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:43:27 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/14 18:18:55 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/15 14:54:13 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,6 @@ void	long_i_s_index(t_infsa *infa)
 
 	data.tmp = infa->head;
 	data.tmp2 = data.tmp->next;
-	data.tmp->sub_s = -1;
 	while (data.tmp2)
 	{
 		data.tmp = infa->head;
@@ -241,6 +240,39 @@ void	long_i_s_index(t_infsa *infa)
 		data.tmp2 = data.tmp2->next;
 	}
 }
+
+/* ************************************************************************** */
+
+// void	sort_three(t_infsa *infa)
+// {
+// 	if (infa->head->data == infa->small && infa->head->next->data > infa->tail->data)
+// 	{
+// 		sa(infa);
+// 		ra(infa);
+// 	}
+// 	else if (infa->head->next->data == infa->small)
+// 	{
+// 		if (infa->head->data > infa->tail->data)
+// 			ra(infa);
+// 		else
+// 		{
+// 			rra(infa);
+// 			sa(infa);
+// 			rra(infa);
+// 		}
+// 	}
+// 	else if (infa->tail->data == infa->small)
+// 	{
+// 		if (infa->head->data < infa->head->next->data)
+// 			rra(infa);
+// 		else
+// 		{
+// 			sa(infa);
+// 			rra(infa);
+// 		}
+// 	}
+// }
+
 
 /* ************************************************************************** */
 
@@ -277,6 +309,9 @@ void	sort(t_infsa *infa, t_infsb *infb)
 		original.head = infa->head;
 		original.tail = infa->tail;
 	}
+	index_stack(infa, infb);
+	// if (infa->len == 3)
+	// 	sort_three(infa);
 	long_i_s_index(infa);
 	long_i_s(infa, infb, &data, &original);
 	start_sort(infa, infb);

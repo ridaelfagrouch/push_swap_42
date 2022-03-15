@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 12:00:49 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/14 19:10:13 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/14 20:58:33 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	ft_atoi(const char *str)
 	char			*src;
 	unsigned int	i;
 	int				sign;
-	int		k;
+	long int		k;
+	long int		som;
 
 	i = 0;
 	sign = 1;
@@ -46,5 +47,8 @@ int	ft_atoi(const char *str)
 		k = k * 10 + src[i] - '0';
 		i++;
 	}
+	som = sign * k;
+	if (som > 2147483647 || som < -2147483648)
+		exit (1);
 	return (sign * k);
 }

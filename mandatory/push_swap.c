@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:14 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/14 18:39:13 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/15 14:56:38 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ static void	initial_data(t_infsa *infa, t_infsb *infb, t_node **s_a, t_node **s_
 	infa->small_index = 0;
 	infa->head->lenght = 1;
 	infa->head->sub_s = -1;
+	infa->head->best_mvb = 0;
 }
 
 /* ************************************************************************** */
@@ -116,8 +117,8 @@ int	main(int ac, char *av[])
 {
 	t_node		*s_a;
 	t_node		*s_b;
-	t_infsa	infa;
-	t_infsb	infb;
+	t_infsa		infa;
+	t_infsb		infb;
 	int			j;
 
 	j = 0;
@@ -157,4 +158,5 @@ int	main(int ac, char *av[])
 		write(1, "error: bad arg number!\n", 23);
 		exit(1);
 	}
+	return (0);
 }
