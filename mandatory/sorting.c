@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:43:27 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/15 14:54:13 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:26:10 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,26 @@ void	long_i_s(t_infsa *infa, t_infsb *infb, t_data *data, t_infsa *original)
 
 /* ************************************************************************** */
 
+void	check_tmp_lenght(int *nember_befor, int *index_befor, t_data *data)
+{
+	if (data->tmp->lenght + 1 > data->tmp2->lenght)
+	{
+		data->tmp2->lenght = data->tmp->lenght + 1;
+		data->tmp2->sub_s = data->tmp->index;
+		*nember_befor = data->tmp->data;
+		*index_befor = data->tmp->index;
+	}
+	else if (data->tmp->lenght + 1 == data->tmp2->lenght)
+	{
+		if (data->tmp->data < *nember_befor)
+			data->tmp2->sub_s = data->tmp->index;
+		else
+			data->tmp2->sub_s = *index_befor;
+	}
+}
+
+/* ************************************************************************** */
+
 void	long_i_s_index(t_infsa *infa)
 {
 	t_data	data;
@@ -219,22 +239,7 @@ void	long_i_s_index(t_infsa *infa)
 		while (data.tmp != data.tmp2 && data.tmp)
 		{
 			if (data.tmp->data < data.tmp2->data)
-			{
-				if (data.tmp->lenght + 1 > data.tmp2->lenght)
-				{
-					data.tmp2->lenght = data.tmp->lenght + 1;
-					data.tmp2->sub_s = data.tmp->index;
-					nember_befor = data.tmp->data;
-					index_befor = data.tmp->index;
-				}
-				else if (data.tmp->lenght + 1 == data.tmp2->lenght)
-				{
-					if (data.tmp->data < nember_befor)
-						data.tmp2->sub_s = data.tmp->index;
-					else
-						data.tmp2->sub_s = index_befor;
-				}
-			}
+				check_tmp_lenght(&nember_befor, &index_befor, &data);
 			data.tmp = data.tmp->next;
 		}
 		data.tmp2 = data.tmp2->next;
@@ -243,36 +248,52 @@ void	long_i_s_index(t_infsa *infa)
 
 /* ************************************************************************** */
 
-// void	sort_three(t_infsa *infa)
-// {
-// 	if (infa->head->data == infa->small && infa->head->next->data > infa->tail->data)
-// 	{
-// 		sa(infa);
-// 		ra(infa);
-// 	}
-// 	else if (infa->head->next->data == infa->small)
-// 	{
-// 		if (infa->head->data > infa->tail->data)
-// 			ra(infa);
-// 		else
-// 		{
-// 			rra(infa);
-// 			sa(infa);
-// 			rra(infa);
-// 		}
-// 	}
-// 	else if (infa->tail->data == infa->small)
-// 	{
-// 		if (infa->head->data < infa->head->next->data)
-// 			rra(infa);
-// 		else
-// 		{
-// 			sa(infa);
-// 			rra(infa);
-// 		}
-// 	}
-// }
+void	sort_three(t_infsa *infa)
+{
+	if (infa->head->data == infa->small && \
+		infa->head->next->data > infa->tail->data)
+	{
+		sa(infa);
+		ra(infa);
+	}
+	else if (infa->head->next->data == infa->small)
+	{
+		if (infa->head->data > infa->tail->data)
+			ra(infa);
+		else
+			sa(infa);
+	}
+	else if (infa->tail->data == infa->small)
+	{
+		if (infa->head->data > infa->head->next->data)
+			sa(infa);
+		rra(infa);
+	}
+}
 
+/* ************************************************************************** */
+
+void	fake_head(t_infsa *infa, t_infsb *infb, t_data *data, t_infsa *original)
+{
+	original->head = infa->head;
+	original->tail = infa->tail;
+	data->tmp = infa->head;
+	data->tmp2 = infa->tail;
+	data->tmp3 = infa->head;
+	while (data->tmp3->data != infa->small)
+		data->tmp3 = data->tmp3->next;
+	if (data->tmp3 != data->tmp)
+	{
+		data->tmp4 = data->tmp3->prev;
+		data->tmp4->next = NULL;
+		infa->head = data->tmp3;
+		infa->head->prev = NULL;
+		data->tmp2->next = data->tmp;
+		data->tmp->prev = data->tmp2;
+		infa->tail = data->tmp4;
+		index_stack(infa, infb);
+	}
+}
 
 /* ************************************************************************** */
 
@@ -283,36 +304,20 @@ void	sort(t_infsa *infa, t_infsb *infb)
 	int			i;
 
 	i = -1;
-	if (infa->head->data != infa->small)
-	{
-		original.head = infa->head;
-		original.tail = infa->tail;
-		data.tmp = infa->head;
-		data.tmp2 = infa->tail;
-		data.tmp3 = infa->head;
-		while (data.tmp3->data != infa->small)
-			data.tmp3 = data.tmp3->next;
-		if (data.tmp3 != data.tmp)
-		{
-			data.tmp4 = data.tmp3->prev;
-			data.tmp4->next = NULL;
-			infa->head = data.tmp3;
-			infa->head->prev = NULL;
-			data.tmp2->next = data.tmp;
-			data.tmp->prev = data.tmp2;
-			infa->tail = data.tmp4;
-			index_stack(infa, infb);
-		}
-	}
+	if (infa->head->data != infa->small && infa->len > 3)
+		fake_head(infa, infb, &data, &original);
 	else
 	{
 		original.head = infa->head;
 		original.tail = infa->tail;
 	}
 	index_stack(infa, infb);
-	// if (infa->len == 3)
-	// 	sort_three(infa);
-	long_i_s_index(infa);
-	long_i_s(infa, infb, &data, &original);
-	start_sort(infa, infb);
+	if (infa->len == 3)
+		sort_three(infa);
+	else
+	{
+		long_i_s_index(infa);
+		long_i_s(infa, infb, &data, &original);
+		start_sort(infa, infb);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:54:41 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/15 16:27:58 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:27:22 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	last_sort(t_infsa *infa)
 	}
 }
 
-
 /* ************************************************************************** */
 
 void	found_best_mouv(t_infsa *infa, t_infsb *infb, t_best_mouv *mouv)
@@ -106,8 +105,6 @@ void	start_sort(t_infsa *infa, t_infsb *infb)
 	while (infb->len != 0)
 	{
 		found_best_mouv(infa, infb, &mouv);
-		data.tmp2 = infb->head;
-		data.tmp1 = infa->head;
 		if (mouv.best_mouv_index_a > infa->tail->index)
 			sorting_case1(infa, infb, &mouv, &data);
 		else if ((mouv.best_mouv_index_a > infa->len / 2) && \

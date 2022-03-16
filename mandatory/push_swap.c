@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:14 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/15 14:56:38 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:34:19 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,10 +148,10 @@ int	main(int ac, char *av[])
 		len_stack_a(&infa);
 		check_dup(&infa);
 		sort(&infa, &infb);
-		// ft_printf("----------stack_a----------\n");
-		// display_a(infa);
-		// ft_printf("----------stack_b----------\n");
-		// display_b(infb);
+		ft_printf("----------stack_a----------\n");
+		display_a(infa);
+		ft_printf("----------stack_b----------\n");
+		display_b(infb);
 	}
 	else
 	{
