@@ -6,14 +6,15 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 12:00:49 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/14 20:58:33 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/18 19:27:28 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	wite_space(const char *str, unsigned int *i)
+static void	wite_space(const char *str, long int *i)
 {
+	*i = 0;
 	while ((str[*i] == ' ') || (str[*i] == '\r')
 		|| (str[*i] == '\n') || (str[*i] == '\t')
 		|| (str[*i] == '\v') || (str[*i] == '\f'))
@@ -25,12 +26,10 @@ static void	wite_space(const char *str, unsigned int *i)
 int	ft_atoi(const char *str)
 {
 	char			*src;
-	unsigned int	i;
+	long int		i;
 	int				sign;
 	long int		k;
-	long int		som;
 
-	i = 0;
 	sign = 1;
 	k = 0;
 	src = (char *) str;
@@ -47,8 +46,8 @@ int	ft_atoi(const char *str)
 		k = k * 10 + src[i] - '0';
 		i++;
 	}
-	som = sign * k;
-	if (som > 2147483647 || som < -2147483648)
+	i = sign * k;
+	if (i > 2147483647 || i < -2147483648)
 		exit (1);
 	return (sign * k);
 }

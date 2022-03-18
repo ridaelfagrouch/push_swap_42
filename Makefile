@@ -1,6 +1,8 @@
 CFILES = ./mandatory/push_swap.c  ./mandatory/sa_pa_ra_rra.c  ./mandatory/sb_pb_rb_rrb.c  \
 		./mandatory/ss_rr_rrr.c  ./mandatory/stack_len_disp.c  ./mandatory/sorting.c  \
-		./mandatory/best_Mvm.c  ./mandatory/start_sorting.c  ./mandatory/sorting_cases.c
+		./mandatory/best_Mvm.c  ./mandatory/start_sorting.c  ./mandatory/sorting_cases.c \
+		./mandatory/best_Mv_function.c  ./mandatory/node_data.c  ./mandatory/long_i_sub.c \
+		./mandatory/long_i_sub_utils.c  ./mandatory/free_stack.c  ./mandatory/check_error.c
 
 OFILES = ${CFILES:.c=.o}
 
