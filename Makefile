@@ -6,14 +6,18 @@ CFILES = ./mandatory/push_swap.c  ./mandatory/sa_pa_ra_rra.c  ./mandatory/sb_pb_
 
 OFILES = ${CFILES:.c=.o}
 
-CBONUS = 
+CBONUS = ./bonus/checker.c  ./bonus/get_next_line_utils.c  ./bonus/get_next_line.c  ./bonus/node_data.c \
+		./bonus/sorting.c  ./bonus/stack_len_disp.c ./bonus/trim_strcmp.c  ./bonus/check_error.c \
+		./bonus/check_error.c ./bonus/free_stack.c
+
 OBONUS = ${CBONUS:.c=.o}
 
 CC = gcc
 W = -Wall -Werror -Wextra
 INC = ./mandatory/push_swap.h
-INCB = ./bonus/push_swap_bonus.h
+INCB = ./bonus/checker.h
 NAME = push_swap
+NAME_B = checker
 
 YELLOW=\033[1;33m
 NC=\033[0m
@@ -100,9 +104,12 @@ clean:
 
 fclean : clean
 	@rm -f ${NAME}
+	@rm -f ${NAME_B}
 
 re : fclean all
 
 bonus: print_header_b  ${OBONUS} $(INCB)
-	@$(CC) $(OBONUS) $(W) -o $(NAME)
-	@echo "${YELLOW}$(NAME) created ${NC}"
+	@make -C ./libft
+	@make -C ./ft_printf
+	@$(CC) $(OBONUS) $(W)  ./libft/libft.a ./ft_printf/libftprintf.a -o $(NAME_B)
+	@echo "${YELLOW}$(NAME_B) created ${NC}"

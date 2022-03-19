@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:06:29 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/18 19:12:37 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/19 16:34:33 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,24 @@ int	*stor_long_i_s(t_infsa infa, t_data *data, int count)
 
 /* ************************************************************************** */
 
+void	check_best_mv_a(t_infsa *infa, int *tab, t_data *data)
+{
+	while (data->i <= infa->l_i_sub_len - 1)
+	{
+		data->tmp1 = infa->head;
+		while (data->tmp1)
+		{
+			if (data->tmp1->data == tab[data->i])
+			{
+				data->tmp1->best_mvb = -1;
+				break ;
+			}
+			data->tmp1 = data->tmp1->next;
+		}
+		data->i++;
+	}
+}
+
 void	best_mouv_l_i_s(t_infsa *infa, int *tab)
 {
 	t_data	data;
@@ -72,20 +90,7 @@ void	best_mouv_l_i_s(t_infsa *infa, int *tab)
 			data.tmp->best_mvb = data.tmp->index;
 		data.tmp = data.tmp->next;
 	}
-	while (data.i <= infa->l_i_sub_len - 1)
-	{
-		data.tmp1 = infa->head;
-		while (data.tmp1)
-		{
-			if (data.tmp1->data == tab[data.i])
-			{
-				data.tmp1->best_mvb = -1;
-				break ;
-			}
-			data.tmp1 = data.tmp1->next;
-		}
-		data.i++;
-	}
+	check_best_mv_a(infa, tab, &data);
 }
 
 /* ************************************************************************** */

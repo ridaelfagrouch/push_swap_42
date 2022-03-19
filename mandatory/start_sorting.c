@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:54:41 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/18 19:31:00 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/19 16:37:33 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@
 void	best_mouv(t_infsb *infb, t_best_mouv *mouv)
 {
 	t_data	data;
-	int		mouv_to;
-	int		mouv_to_prev;
 
 	data.tmp = infb->head;
-	mouv_to_prev = data.tmp->best_mva + data.tmp->best_mvb;
+	data.j = data.tmp->best_mva + data.tmp->best_mvb;
 	mouv->best_mouv_index = data.tmp->index;
 	mouv->best_mouv_index_a = data.tmp->best_mvb_index;
 	mouv->best_mv_a = data.tmp->best_mva;
@@ -30,15 +28,15 @@ void	best_mouv(t_infsb *infb, t_best_mouv *mouv)
 	data.tmp = data.tmp->next;
 	while (data.tmp)
 	{
-		mouv_to = data.tmp->best_mva + data.tmp->best_mvb;
-		if (mouv_to < mouv_to_prev)
+		data.i = data.tmp->best_mva + data.tmp->best_mvb;
+		if (data.i < data.j)
 		{
 			mouv->best_mouv_index = data.tmp->index;
 			mouv->best_mouv_index_a = data.tmp->best_mvb_index;
 			mouv->best_mv_a = data.tmp->best_mva;
 			mouv->best_mv_b = data.tmp->best_mvb;
 			mouv->best_mouv_data = data.tmp->data;
-			mouv_to_prev = mouv_to;
+			data.j = data.i;
 		}
 		data.tmp = data.tmp->next;
 	}

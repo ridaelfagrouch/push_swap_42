@@ -1,57 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error.c                                      :+:      :+:    :+:   */
+/*   free_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 19:34:47 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/19 15:24:30 by rel-fagr         ###   ########.fr       */
+/*   Created: 2022/03/18 19:49:04 by rel-fagr          #+#    #+#             */
+/*   Updated: 2022/03/19 19:03:36 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 /* ************************************************************************** */
 
-void	empty_arg(int ac, char **av)
+void	ft_free_a(t_infsa *infa)
 {
-	int	i;
+	t_node	*root;
+	t_node	*ptr;
 
-	i = 1;
-	while (i < ac)
+	root = NULL;
+	ptr = infa->head;
+	if (!infa->head)
+		infa->head = NULL;
+	while (ptr != NULL)
 	{
-		if (ft_strlen(av[i]) == 0)
-		{
-			write(1, "error: empty arg!\n", 18);
-			exit(1);
-		}
-		i++;
+		root = ptr;
+		ptr = ptr->next;
+		free(root);
 	}
+	infa->head = NULL;
 }
 
 /* ************************************************************************** */
 
-void	check_dup(t_infsa *infa, t_infsb *infb)
+void	ft_free_b(t_infsb *infb)
 {
-	t_data	data;
+	t_node	*root;
+	t_node	*ptr;
 
-	data.tmp = infa->head;
-	while (data.tmp)
+	root = NULL;
+	ptr = infb->head;
+	if (!infb->head)
+		infb->head = NULL;
+	while (ptr != NULL)
 	{
-		data.tmp2 = data.tmp->next;
-		while (data.tmp2)
-		{
-			if (data.tmp->data == data.tmp2->data)
-			{
-				ft_free_a(infa);
-				ft_free_b(infb);
-				write(1, "error: dup number!\n", 19);
-				exit(1);
-			}
-			else
-				data.tmp2 = data.tmp2->next;
-		}
-		data.tmp = data.tmp->next;
+		root = ptr;
+		ptr = ptr->next;
+		free(root);
 	}
+	infb->head = NULL;
 }
