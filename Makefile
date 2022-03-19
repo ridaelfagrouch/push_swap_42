@@ -8,7 +8,8 @@ OFILES = ${CFILES:.c=.o}
 
 CBONUS = ./bonus/checker.c  ./bonus/get_next_line_utils.c  ./bonus/get_next_line.c  ./bonus/node_data.c \
 		./bonus/sorting.c  ./bonus/stack_len_disp.c ./bonus/trim_strcmp.c  ./bonus/check_error.c \
-		./bonus/check_error.c ./bonus/free_stack.c
+		./bonus/free_stack.c  ./bonus/sa_pa_ra_rra.c  ./bonus/sb_pb_rb_rrb.c  \
+		./bonus/ss_rr_rrr.c
 
 OBONUS = ${CBONUS:.c=.o}
 

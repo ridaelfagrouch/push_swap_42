@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 19:34:47 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/19 15:24:30 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/19 20:22:12 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	empty_arg(int ac, char **av)
 	{
 		if (ft_strlen(av[i]) == 0)
 		{
-			write(1, "error: empty arg!\n", 18);
+			write(2, "error: empty arg!\n", 18);
 			exit(1);
 		}
 		i++;
@@ -46,7 +46,7 @@ void	check_dup(t_infsa *infa, t_infsb *infb)
 			{
 				ft_free_a(infa);
 				ft_free_b(infb);
-				write(1, "error: dup number!\n", 19);
+				write(2, "error: dup number!\n", 19);
 				exit(1);
 			}
 			else

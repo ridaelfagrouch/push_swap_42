@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:14 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/19 18:58:17 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/19 20:21:34 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	first_node(t_infsa *infa, t_infsb *infb, char **str)
 		j++;
 	if (ft_isdigit(str[1][j]) == 0 && str[1][j] != '\0')
 	{
-		write(1, "error!\n", 7);
+		write(2, "error!\n", 7);
 		exit(1);
 	}
 	infa->head = s_a;
@@ -104,13 +104,13 @@ int	main(int ac, char *av[])
 		data_sa(str, &infa);
 		check_dup(&infa, &infb);
 		len_stack_a(&infa);
-		//appl_sortint(&infa, &infb);
-		// ft_printf("----------stack_a----------\n");
-		// display_a(infa);
+		appl_sortint(&infa, &infb);
+		ft_printf("----------stack_a----------\n");
+		display_a(infa);
 	}
 	else
 	{
-		write(1, "error: bad arg number!\n", 23);
+		write(2, "error: bad arg number!\n", 23);
 		exit(1);
 	}
 	return (0);

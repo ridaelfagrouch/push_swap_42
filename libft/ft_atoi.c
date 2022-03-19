@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 12:00:49 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/19 16:29:41 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/19 20:19:20 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	len_str(const char *str)
 	len = 0;
 	if (ft_strlen(str) == 1 && (str[0] == '-' || str[0] == '+'))
 	{
-		write(1, "error: invalid arg!!\n", 21);
+		write(2, "error: invalid arg!!\n", 21);
 		exit (1);
 	}
 	if (str[0] == '-' || str[0] == '+')
@@ -49,12 +49,12 @@ static void	error_(int sign, long int k, const char *str)
 {
 	if ((sign * k) > 2147483647 || (sign * k) < -2147483648)
 	{
-		write(1, "error: invalid arg!!\n", 21);
+		write(2, "error: invalid arg!!\n", 21);
 		exit (1);
 	}
 	if (len_str(str))
 	{
-		write(1, "error: invalid nember!!\n", 24);
+		write(2, "error: invalid nember!!\n", 24);
 		exit (1);
 	}
 }

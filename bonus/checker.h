@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:24 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/19 19:04:26 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/19 19:56:39 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,24 @@ char	*get_next_line(int fd);
 size_t	ft_strlen1(char *str);
 char	*ft_substr1(char *s, unsigned int start, unsigned int len);
 void	ft_bzero1(void *s, size_t n);
+
+//********************************sa_pa_rra_ra.c*****************************
+void	sa(t_infsa *infa);
+void	pa(t_infsa *infa, t_infsb *infb);
+void	rra(t_infsa *infa);
+void	ra(t_infsa *infa);
+
+//********************************sb_pb_rb_rrb*******************************
+void	sb(t_infsb *infb);
+void	pb(t_infsa *infa, t_infsb *infb);
+void	rb(t_infsb *infb);
+void	rrb(t_infsb *infb);
+
+//********************************ss_rr_rrr.c*********************************
+void	ssb(t_infsb *infb);
+void	ss(t_infsa *infa, t_infsb *infb);
+void	rr(t_infsa *infa, t_infsb *infb);
+void	rrr(t_infsa *infa, t_infsb *infb);
 
 //*******************************node_data.c********************************
 void	check_isdigit(t_data *data, char **av);
