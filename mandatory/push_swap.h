@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:24 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/18 20:13:53 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/19 13:45:00 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,31 +90,31 @@ typedef struct data
 	t_node	*temp;
 }	t_data;
 
-//*************sa_pa_rra_ra.c***********
+		//*************sa_pa_rra_ra.c***********
 void	sa(t_infsa *infa);
 void	pa(t_infsa *infa, t_infsb *infb);
 void	rra(t_infsa *infa);
 void	ra(t_infsa *infa);
-//*************sb_pb_rb_rrb*************
+		//*************sb_pb_rb_rrb*************
 void	sb(t_infsb *infb);
 void	pb(t_infsa *infa, t_infsb *infb);
 void	rb(t_infsb *infb);
 void	rrb(t_infsb *infb);
-//*************ss_rr_rrr.c***************
+		//*************ss_rr_rrr.c***************
 void	ssb(t_infsb *infb);
 void	ss(t_infsa *infa, t_infsb *infb);
 void	rr(t_infsa *infa, t_infsb *infb);
 void	rrr(t_infsa *infa, t_infsb *infb);
-//*************best_Mv_function.c*********
+		//*************best_Mv_function.c*********
 void	found_mouv_stack_b(t_infsb *infb);
 void	check_small_index(t_infsa *infa);
 void	check_negative(t_infsa *infa, t_infsb *infb, t_data	*data);
 void	check_rang2(t_infsa *infa, t_data *data);
 void	check_rang1(t_infsa *infa, t_data *data);
-//*************best_Mvm.c******************
+		//*************best_Mvm.c******************
 void	check_rang1_rang2(t_infsa *infa, t_data *data);
 void	found_mouv_stack_a(t_infsa *infa, t_infsb *infb);
-//*************sorting_cases.c*************
+		//*************sorting_cases.c*************
 void	sorting_case1(t_infsa *infa, t_infsb *infb, \
 	t_best_mouv	*mouv, t_data *data);
 void	sorting_case2(t_infsa *infa, t_infsb *infb, \
@@ -125,44 +125,44 @@ void	sorting_case4(t_infsa *infa, t_infsb *infb, \
 	t_best_mouv *mouv, t_data *data);
 void	sorting_case5(t_infsa *infa, t_infsb *infb, \
 	t_best_mouv *mouv, t_data *data);
-//*************long_i_sub.c*****************
+		//*************long_i_sub.c*****************
 void	fake_head(t_infsa *infa, t_infsb *infb, \
 	t_data *data, t_infsa *original);
 void	long_i_s(t_infsa *infa, t_infsb *infb, t_data *data, t_infsa *original);
 void	check_tmp_lenght(int *nember_befor, int *index_befor, t_data *data);
 void	long_i_s_index(t_infsa *infa);
 void	count_calculat(t_data *data, t_infsa *infa, int *sub, int *count);
-//*************long_i_sub_utils.c*************
+		//*************long_i_sub_utils.c*************
 void	max_lenght(t_data *data, int *max_lenght);
 int		*stor_long_i_s(t_infsa infa, t_data *data, int count);
 void	best_mouv_l_i_s(t_infsa *infa, int *tab);
 void	push_no_lis(t_infsa *infa, t_infsb *infb, int *tab);
-//*************node_data.c********************
+		//*************node_data.c********************
 void	check_isdigit(t_data *data, char **av);
 void	newnode_data(char **av, t_data *data);
-void	data_sa(int ac, char **av, t_infsa *infa);
-void	check_dup(t_infsa *infa, t_infsb *infb);
-//*************sorting.c**********************
+void	data_sa(char **av, t_infsa *infa);
+		//*************sorting.c**********************
 void	native_infa(t_data *data, t_infsa *original, t_infsa *infa);
 void	best_mouv_(t_infsa *infa, t_best_mouv *best);
 void	sort_three(t_infsa *infa);
 void	sort(t_infsa *infa, t_infsb *infb);
-//*************stack_len_disp.c***************
+		//*************stack_len_disp.c***************
 void	len_stack_a(t_infsa *infa);
 void	len_stack_b(t_infsb *infb);
 void	display_a(t_infsa infa);
 void	display_b(t_infsb infb);
 void	index_stack(t_infsa *infa, t_infsb *infb);
-//*************start_sorting.c*****************
+		//*************start_sorting.c*****************
 void	best_mouv(t_infsb *infb, t_best_mouv *mouv);
 void	initial_best_mv(t_infsb *infb);
 void	last_sort(t_infsa *infa);
 void	found_best_mouv(t_infsa *infa, t_infsb *infb, t_best_mouv *mouv);
 void	start_sort(t_infsa *infa, t_infsb *infb);
-//*************free_stack**********************
+		//*************free_stack**********************
 void	ft_free_a(t_infsa *infa);
 void	ft_free_b(t_infsb *infb);
-
+		//*************check_error.c*******************
 void	empty_arg(int ac, char **av);
+void	check_dup(t_infsa *infa, t_infsb *infb);
 
 #endif

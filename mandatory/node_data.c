@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:49:04 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/18 19:54:08 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/19 14:04:13 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@
 
 void	check_isdigit(t_data *data, char **av)
 {
-	data->i = 0;
-	while (av[data->j][data->i])
+	int	i;
+
+	i = 0;
+	while (av[data->j][i])
 	{
-		if (av[data->j][data->i] == '-')
-			data->i++;
-		if (ft_isdigit(av[data->j][data->i]) && av[data->j][data->i] != '\0')
-			data->i++;
-		if (ft_isdigit(av[data->j][data->i]) == 0 && \
-			av[data->j][data->i] != '\0')
+		if (av[data->j][i] == '-')
+			i++;
+		if (ft_isdigit(av[data->j][i]) && av[data->j][i] != '\0')
+			i++;
+		if (ft_isdigit(av[data->j][i]) == 0 && \
+			av[data->j][i] != '\0')
 		{
 			write(2, "error!\n", 7);
 			exit(1);
@@ -45,13 +47,27 @@ void	newnode_data(char **av, t_data *data)
 
 /* ************************************************************************** */
 
-void	data_sa(int ac, char **av, t_infsa *infa)
+static int	av_len(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+/* ************************************************************************** */
+
+void	data_sa(char **av, t_infsa *infa)
 {
 	t_data	data;
+	int		len;
 
-	data.j = 2;
+	data.j = 1;
 	data.i = 0;
-	while (data.j < ac)
+	len = av_len(av);
+	while (data.j < len)
 	{
 		data.newnode = (t_node *)malloc(sizeof(t_node));
 		if (!data.newnode)
@@ -68,31 +84,5 @@ void	data_sa(int ac, char **av, t_infsa *infa)
 		infa->tail = data.newnode;
 		data.j++;
 		data.i++;
-	}
-}
-
-/* ************************************************************************** */
-
-void	check_dup(t_infsa *infa, t_infsb *infb)
-{
-	t_data	data;
-
-	data.tmp = infa->head;
-	while (data.tmp)
-	{
-		data.tmp2 = data.tmp->next;
-		while (data.tmp2)
-		{
-			if (data.tmp->data == data.tmp2->data)
-			{
-				ft_free_a(infa);
-				ft_free_b(infb);
-				write(1, "error: dup number!\n", 19);
-				exit(1);
-			}
-			else
-				data.tmp2 = data.tmp2->next;
-		}
-		data.tmp = data.tmp->next;
 	}
 }

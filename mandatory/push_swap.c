@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:14 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/18 20:14:24 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/19 14:05:34 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	initial_data(t_infsa *infa, t_infsb *infb)
 
 /* ************************************************************************** */
 
-static void	first_node(t_infsa *infa, t_infsb *infb, char **av)
+static void	first_node(t_infsa *infa, t_infsb *infb, char **str)
 {
 	t_node	*s_a;
 	t_node	*s_b;
@@ -44,11 +44,11 @@ static void	first_node(t_infsa *infa, t_infsb *infb, char **av)
 	s_b = (t_node *)malloc(sizeof(t_node));
 	if (!s_b)
 		exit(1);
-	if (av[1][j] == '-')
+	if (str[1][j] == '-' || str[1][j] == '+')
 		j++;
-	while (ft_isdigit(av[1][j]) && av[1][j] != '\0')
+	while (ft_isdigit(str[1][j]) && str[1][j] != '\0')
 		j++;
-	if (ft_isdigit(av[1][j]) == 0 && av[1][j] != '\0')
+	if (ft_isdigit(str[1][j]) == 0 && str[1][j] != '\0')
 	{
 		write(1, "error!\n", 7);
 		exit(1);
@@ -61,21 +61,49 @@ static void	first_node(t_infsa *infa, t_infsb *infb, char **av)
 
 /* ************************************************************************** */
 
+char	**join_arg(int ac, char **av)
+{
+	char	*str;
+	char	*ptr;
+	char	**split;
+	int		i;
+
+	i = 2;
+	empty_arg(ac, av);
+	str = ft_strdup(av[1]);
+	while (i < ac)
+	{
+		ptr = str;
+		str = ft_strjoin(str, " ");
+		free(ptr);
+		ptr = str;
+		str = ft_strjoin(str, av[i]);
+		free(ptr);
+		i++;
+	}
+	split = ft_split(str, ' ');
+	free(str);
+	return (split);
+}
+
+/* ************************************************************************** */
+
 int	main(int ac, char *av[])
 {
 	t_infsa		infa;
 	t_infsb		infb;
+	char		**str;
 
 	if (ac > 1)
 	{
-		empty_arg(ac, av);
-		first_node(&infa, &infb, av);
+		str = join_arg(ac, av);
+		first_node(&infa, &infb, str);
 		initial_data(&infa, &infb);
-		infa.head->data = ft_atoi(av[1]);
+		infa.head->data = ft_atoi(str[0]);
 		infa.small = infa.head->data;
-		data_sa(ac, av, &infa);
-		len_stack_a(&infa);
+		data_sa(str, &infa);
 		check_dup(&infa, &infb);
+		len_stack_a(&infa);
 		sort(&infa, &infb);
 		// ft_printf("----------stack_a----------\n");
 		// display_a(infa);

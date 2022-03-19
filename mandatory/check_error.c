@@ -6,10 +6,9 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 19:34:47 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/18 20:17:13 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/19 13:51:15 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 
@@ -28,5 +27,31 @@ void	empty_arg(int ac, char **av)
 			exit(1);
 		}
 		i++;
+	}
+}
+
+/* ************************************************************************** */
+
+void	check_dup(t_infsa *infa, t_infsb *infb)
+{
+	t_data	data;
+
+	data.tmp = infa->head;
+	while (data.tmp)
+	{
+		data.tmp2 = data.tmp->next;
+		while (data.tmp2)
+		{
+			if (data.tmp->data == data.tmp2->data)
+			{
+				ft_free_a(infa);
+				ft_free_b(infb);
+				write(1, "error: dup number!\n", 19);
+				exit(1);
+			}
+			else
+				data.tmp2 = data.tmp2->next;
+		}
+		data.tmp = data.tmp->next;
 	}
 }
