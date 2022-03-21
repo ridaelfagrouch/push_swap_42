@@ -15,11 +15,11 @@ all : ${NAME}
 
 ${NAME} : ${OBONUS} ${INC}
 	@ar -rcs ${NAME} ${OBONUS}
-	@echo "${YELLOW}libftprintf.a created${NC}"
+	@echo "${YELLOW}libftprintf.a created 👍${NC}"
 
 %.o:%.c
 	@${CC} ${W} -o $@ -c $<
-	@echo "${GREEN}$@ created${NC}"
+	@echo "${GREEN}$@ created ✅${NC}"
 
 clean:
 	@rm -f ${OBONUS}

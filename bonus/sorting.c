@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:48:00 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/21 16:14:56 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/21 21:10:14 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	appl_sortint(t_infsa *infa, t_infsb *infb)
 		check_sorting(infa, &i);
 		str = ft_strtrim(get_next_line(0), "\n");
 	}
+	free(str);
 	if (i == 0 && (infa->len == len))
 		ft_printf("\033[0;32mOK😁\033[0m\n");
 	else

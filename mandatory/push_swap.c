@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:14 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/19 20:23:03 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/21 21:07:17 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ static void	first_node(t_infsa *infa, t_infsb *infb, char **str)
 	s_b = (t_node *)malloc(sizeof(t_node));
 	if (!s_b)
 		exit(1);
-	if (str[1][j] == '-' || str[1][j] == '+')
+	if (str[0][j] == '-' || str[0][j] == '+')
 		j++;
-	while (ft_isdigit(str[1][j]) && str[1][j] != '\0')
+	while (ft_isdigit(str[0][j]) && str[0][j] != '\0')
 		j++;
-	if (ft_isdigit(str[1][j]) == 0 && str[1][j] != '\0')
+	if (ft_isdigit(str[0][j]) == 0 && str[0][j] != '\0')
 	{
 		write(2, "error!\n", 7);
 		exit(1);
@@ -105,13 +105,6 @@ int	main(int ac, char *av[])
 		check_dup(&infa, &infb);
 		len_stack_a(&infa);
 		sort(&infa, &infb);
-		// ft_printf("----------stack_a----------\n");
-		// display_a(infa);
-	}
-	else
-	{
-		write(2, "error: bad arg number!\n", 23);
-		exit(1);
 	}
 	return (0);
 }

@@ -22,11 +22,11 @@ all : ${NAME}
 
 ${NAME} : ${OFILES} ${INC}
 	@ar -rcs ${NAME} ${OFILES}
-	@echo "${YELLOW}libft.a created${NC}"
+	@echo "${YELLOW}libft.a created 👍${NC}"
 
 %.o:%.c
 	@${CC} ${W} -o $@ -c $<
-	@echo "${GREEN}$@ created${NC}"
+	@echo "${GREEN}$@ created ✅${NC}"
 
 clean:
 	@rm -f ${OFILES} ${OBONUS}
@@ -38,4 +38,4 @@ re : fclean all
 
 bonus: all ${OBONUS}
 	@ar -rcs ${NAME} ${OBONUS} $(OFILES)
-	@echo "${YELLOW}libft.a bonus created${NC}"
+	@echo "${YELLOW}libft.a bonus created 👍${NC}"
