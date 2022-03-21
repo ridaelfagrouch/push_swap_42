@@ -6,11 +6,17 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:48:00 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/21 14:36:38 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:14:56 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+void	ft_err(void)
+{
+	write(2, "Error\n", 6);
+	exit(1);
+}
 
 void	check_ptr(t_infsa *infa, t_infsb *infb, char *str)
 {
@@ -37,10 +43,7 @@ void	check_ptr(t_infsa *infa, t_infsb *infb, char *str)
 	else if (ft_strcmp(str, "rrr") == 0)
 		rrr(infa, infb);
 	else
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
+		ft_err();
 }
 
 void	check_sorting(t_infsa *infa, int *i)
@@ -53,8 +56,10 @@ void	check_sorting(t_infsa *infa, int *i)
 	{
 		if (data.tmp1->data > data.tmp->data)
 		{
+			data.tmp = data.tmp1;
 			data.tmp1 = data.tmp1->next;
-			data.tmp = data.tmp1->prev;
+			if (data.tmp == infa->tail)
+				break ;
 		}
 		else
 		{
@@ -82,8 +87,8 @@ void	appl_sortint(t_infsa *infa, t_infsb *infb)
 		str = ft_strtrim(get_next_line(0), "\n");
 	}
 	if (i == 0 && (infa->len == len))
-		write(1, "OK\n", 3);
+		ft_printf("\033[0;32mOK😁\033[0m\n");
 	else
-		write(1, "KO\n", 3);
+		ft_printf("\033[0;31mKO😡\033[0m\n");
 	ft_free_b(infb);
 }
