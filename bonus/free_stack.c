@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 19:49:04 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/19 19:03:36 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:34:46 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,19 @@ void	ft_free_b(t_infsb *infb)
 		free(root);
 	}
 	infb->head = NULL;
+}
+
+/* ************************************************************************** */
+
+void	free_split(char **ptr)
+{
+	int	i;
+
+	i = 0;
+	while (ptr[i] != NULL)
+	{
+		free(ptr[i]);
+		i++;
+	}
+	free(ptr);
 }

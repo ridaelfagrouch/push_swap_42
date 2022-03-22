@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:48:00 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/21 21:10:14 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/22 19:16:04 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	appl_sortint(t_infsa *infa, t_infsb *infb)
 
 	len = infa->len;
 	str = ft_strtrim(get_next_line(0), "\n");
+	i = 0;
+	check_sorting(infa, &i);
 	while (str)
 	{
 		check_ptr(infa, infb, str);

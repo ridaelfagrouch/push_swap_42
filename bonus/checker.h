@@ -6,7 +6,7 @@
 /*   By: rel-fagr <rel-fagr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:31:24 by rel-fagr          #+#    #+#             */
-/*   Updated: 2022/03/19 19:56:39 by rel-fagr         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:35:08 by rel-fagr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,6 @@ void	check_dup(t_infsa *infa, t_infsb *infb);
 //*********************************free_stack******************************
 void	ft_free_a(t_infsa *infa);
 void	ft_free_b(t_infsb *infb);
+void	free_split(char **ptr);
 
 #endif
